@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
@@ -20,6 +21,9 @@ public class Compra {
     @EqualsAndHashCode.Include
     private String codigo;
 
+    //Definir formato de la fecha
     private Date fechaCompra;
+
+    @Column(nullable = false)
     private MedioPago medioPago;
 }

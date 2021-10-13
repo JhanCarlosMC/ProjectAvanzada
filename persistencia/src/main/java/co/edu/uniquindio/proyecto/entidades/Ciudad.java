@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -19,5 +20,6 @@ public class Ciudad {
     @EqualsAndHashCode.Include
     private String codigo;
 
+    @Column(length = 40, nullable = false)
     private String nombre;
 }

@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.util.Date;
 
@@ -36,10 +37,10 @@ public class Producto {
     @Column(nullable = false)
     private int precio;
 
-    @Min(0)
-    @Column(nullable = false)
+    @Min(0) @Max(5)
     private int descuento;
 
     //Falta definir el tipo de dato de fecha
+    @Column(name = "fecha_limite")
     private Date fechaLimite;
 }

@@ -9,14 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-@Getter
-@Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Getter @Setter
 @NoArgsConstructor
-public class Administrador {
+public class Administrador extends Persona{
 
-    //--------------------------Atributos propios de la entidad------------------------------------
-    @Id
-    @EqualsAndHashCode.Include
-    private String codigo;
 }
