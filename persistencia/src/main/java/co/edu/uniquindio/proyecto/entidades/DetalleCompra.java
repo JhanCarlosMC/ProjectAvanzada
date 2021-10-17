@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 
 @Entity
@@ -29,4 +30,10 @@ public class DetalleCompra {
     @Min(0)
     @Column(nullable = false)
     private int precioProducto;
+
+    @ManyToOne
+    private Compra compra;
+    @ManyToOne
+    private Producto producto;
+
 }

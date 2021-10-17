@@ -5,9 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+
+
 
 @Entity
 @Getter @Setter
@@ -20,6 +21,13 @@ public class Ciudad {
     @EqualsAndHashCode.Include
     private String codigo;
 
+
     @Column(length = 40, nullable = false)
     private String nombre;
+
+    @OneToMany(mappedBy = "ciudad")
+    private List<Usuario> usuarios;
+    @OneToMany(mappedBy = "ciudad")
+    private List<Producto> productos;
+
 }

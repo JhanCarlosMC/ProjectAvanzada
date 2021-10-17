@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
 @Entity
@@ -29,4 +30,7 @@ public class Mensaje {
 
     //Definir fomato de la fecha
     private Date fecha;
+
+    @ManyToOne
+    private Chat chat;
 }

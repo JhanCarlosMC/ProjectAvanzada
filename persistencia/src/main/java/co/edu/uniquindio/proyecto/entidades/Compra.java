@@ -5,10 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -26,4 +25,11 @@ public class Compra {
 
     @Column(nullable = false)
     private MedioPago medioPago;
+
+    @ManyToOne
+    private Usuario usuario;
+
+    @OneToMany(mappedBy = "compra")
+    private List<DetalleCompra> detalleCompras;
+
 }

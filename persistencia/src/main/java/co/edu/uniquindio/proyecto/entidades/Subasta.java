@@ -7,7 +7,10 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -22,4 +25,8 @@ public class Subasta {
 
     //Falta definir el tipo de dato de fecha
     private Date fechaLimite;
+    @ManyToOne
+    private Producto producto;
+    @OneToMany(mappedBy = "subasta")
+    private List<DetalleSubasta> detalleSubastas;
 }

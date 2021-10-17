@@ -7,6 +7,9 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -18,4 +21,9 @@ public class Chat {
     @Id
     @EqualsAndHashCode.Include
     private String codigo;
+
+    @ManyToOne
+    private Usuario usuario;
+    @OneToMany(mappedBy = "chat")
+    private List<Mensaje> mensajes;
 }
