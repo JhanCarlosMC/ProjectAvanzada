@@ -48,6 +48,7 @@ public class Producto {
     @ManyToOne
     private Ciudad ciudad;
     @OneToMany(mappedBy = "producto")
+
     private List<DetalleCompra> detalleCompras;
     @OneToMany(mappedBy = "producto")
     private List<Comentario> comentarios;
