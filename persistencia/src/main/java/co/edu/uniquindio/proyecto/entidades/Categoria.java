@@ -1,9 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,6 +9,7 @@ import java.util.List;
 @Getter @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
+@ToString
 public class Categoria {
 
     //--------------------------Atributos propios de la entidad------------------------------------
@@ -21,6 +19,9 @@ public class Categoria {
 
     @Column(length = 40, nullable = false)
     private String nombre;
+
+    //--------------------------Relaciones------------------------------------
     @ManyToMany(mappedBy = "categorias")
+    @ToString.Exclude
     private List<Producto> productos;
 }

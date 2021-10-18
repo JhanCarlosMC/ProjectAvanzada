@@ -1,9 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,7 +10,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Inheritance(strategy= InheritanceType.TABLE_PER_CLASS )
 @MappedSuperclass
-public class Persona  {
+@ToString
+public class Persona implements Serializable {
 
     //--------------------------Atributos propios de la entidad------------------------------------
     @Id
@@ -28,4 +26,12 @@ public class Persona  {
 
     @Column(length = 20, nullable = false)
     private String password;
+
+    //--------------------------Constructor------------------------------------
+    public Persona(String codigo, String nombre, String email, String password) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.email = email;
+        this.password = password;
+    }
 }
