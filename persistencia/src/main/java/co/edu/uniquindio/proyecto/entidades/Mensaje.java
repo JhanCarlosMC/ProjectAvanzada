@@ -2,9 +2,12 @@ package co.edu.uniquindio.proyecto.entidades;
 
 import lombok.*;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Getter @Setter
@@ -24,6 +27,7 @@ public class Mensaje {
     @Column(nullable = false)
     private String emisor;
 
+    //Definir fomato de la fecha
     @Column(nullable = false)
     private LocalDate fecha;
 

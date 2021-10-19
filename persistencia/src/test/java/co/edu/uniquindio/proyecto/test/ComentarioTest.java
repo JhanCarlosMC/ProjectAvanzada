@@ -16,25 +16,22 @@ import java.util.List;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class ComentarioTest
-{
+public class ComentarioTest {
     @Autowired
     private ComentarioRepo miCtRepo;
 
     //----------------------------------Metodos CRUD Test----------------------------------------
     @Test
-    public void registrarComentarioTest()
-    {
+    public void registrarComentarioTest() {
         Comentario miCt = new Comentario("0", "Mensaje Prueba", "Respuesta Prueba", LocalDate.of(2018, 10, 30), 5);
         Comentario miCtGuardado = miCtRepo.save(miCt);
         Assertions.assertNotNull(miCtGuardado);
     }
 
     @Test
-    @Sql("classpath:dataSetPrueba.sql")
+    @Sql("classpath:dataSet.sql")
     //Eliminar un comentario
-    public void eliminarComentarioTest()
-    {
+    public void eliminarComentarioTest() {
         miCtRepo.deleteById("1");
         Comentario miCt = miCtRepo.findById("1").orElse(null);
 
@@ -42,10 +39,9 @@ public class ComentarioTest
     }
 
     @Test
-    @Sql("classpath:dataSetPrueba.sql")
+    @Sql("classpath:dataSet.sql")
     //Actualizar Comentario
-    public void actualizarComentarioTest()
-    {
+    public void actualizarComentarioTest() {
         Comentario miCt = miCtRepo.findById("1").orElse(null);
         miCt.setCalificacion(1);
         Comentario miCNuevo = miCtRepo.save(miCt);
@@ -53,10 +49,9 @@ public class ComentarioTest
     }
 
     @Test
-    @Sql("classpath:dataSetPrueba.sql")
+    @Sql("classpath:dataSet.sql")
     //Mostrar lista de comentarios de un usuario
-    public void listarComentariosTest()
-    {
+    public void listarComentariosTest() {
         List<Comentario> listaComentario = miCtRepo.findAll();
 
         Assertions.assertEquals(3, listaComentario.size());

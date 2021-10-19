@@ -23,6 +23,10 @@ public class Chat implements Serializable {
     @JoinColumn(nullable = false)
     private Usuario usuario;
 
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Producto producto;
+
     @OneToMany(mappedBy = "chat")
     @ToString.Exclude
     private List<Mensaje> mensajes;

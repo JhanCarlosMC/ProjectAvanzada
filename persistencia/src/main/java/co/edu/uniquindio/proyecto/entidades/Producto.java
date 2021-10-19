@@ -3,11 +3,9 @@ package co.edu.uniquindio.proyecto.entidades;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -45,7 +43,7 @@ public class Producto implements Serializable {
     private LocalDate fechaLimite;
 
     @ElementCollection
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Map<String, String> imagenes;
 
     //Relaciones
@@ -72,6 +70,10 @@ public class Producto implements Serializable {
     @ManyToMany
     @ToString.Exclude
     private List<Categoria> categorias;
+
+    @OneToMany(mappedBy = "producto")
+    @ToString.Exclude
+    private List<Chat> chat;
 
     @ManyToMany
     @ToString.Exclude

@@ -57,6 +57,6 @@ public class SubastaTest {
     @Sql("classpath:dataSet.sql")
     public void listarSubastaTest() {
         List<Subasta> listaSubastas = subastaRepo.findAll();
-        System.out.println(listaSubastas);
+        listaSubastas.forEach(System.out::println);
     }
 }
