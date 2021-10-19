@@ -43,5 +43,13 @@ public class Comentario {
     @ManyToOne
     private Producto producto;
 
-
+    //Constructor Completo
+    public Comentario(String codigo, String mensaje, String respuesta, Date fechaComentario, int calificacion)
+    {
+        this.codigo = codigo;
+        this.mensaje = mensaje;
+        this.respuesta = respuesta;
+        this.fechaComentario = fechaComentario;
+        this.calificacion = calificacion;
+    }
 }

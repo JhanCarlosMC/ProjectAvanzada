@@ -20,8 +20,8 @@ public class UsuarioTest {
 
     //----------------------------------Metodos CRUD Test----------------------------------------
     @Test
-    public void registrarUsuarioTest(){
-        Usuario newUsuario = new Usuario("1","Jhan", "Jcmc@gmail.com", "100232");
+    public void registrarUsuarioTest() {
+        Usuario newUsuario = new Usuario("1", "Jhan", "Jcmc@gmail.com", "100232");
         Usuario saveUsuario = usuarioRepo.save(newUsuario);
 
         Assertions.assertNotNull(saveUsuario);
@@ -29,7 +29,7 @@ public class UsuarioTest {
 
     @Test
     @Sql("classpath:dataSet.sql")
-    public void eliminarUsuarioTest(){
+    public void eliminarUsuarioTest() {
         usuarioRepo.deleteById("1");
         Usuario usuarioBorrado = usuarioRepo.findById("1").orElse(null);
 
@@ -38,19 +38,20 @@ public class UsuarioTest {
 
     @Test
     @Sql("classpath:dataSet.sql")
-    public void actualizarUsuarioTest(){
+    public void actualizarUsuarioTest() {
         Usuario usuarioGuardado = usuarioRepo.findById("1").orElse(null);
         usuarioGuardado.setNombre("Carlos");
         usuarioRepo.save(usuarioGuardado);
 
         Usuario usuarioUpdate = usuarioRepo.findById("1").orElse(null);
-        Assertions.assertEquals( "Carlos",usuarioUpdate.getNombre());
+        Assertions.assertEquals("Carlos", usuarioUpdate.getNombre());
     }
 
     @Test
     @Sql("classpath:dataSet.sql")
-    public void listarUsuariosTest(){
+    public void listarUsuariosTest() {
         List<Usuario> listaUsuarios = usuarioRepo.findAll();
         System.out.println(listaUsuarios);
+
     }
 }
