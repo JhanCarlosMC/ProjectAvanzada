@@ -1,9 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -16,9 +13,10 @@ import java.util.Date;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
+@ToString
 public class DetalleSubasta implements Serializable {
 
-    //--------------------------Atributos propios de la entidad------------------------------------
+    //Atributos propios de la entidad
     @Id
     @EqualsAndHashCode.Include
     private String codigo;
@@ -27,12 +25,14 @@ public class DetalleSubasta implements Serializable {
     @Column(nullable = false)
     private int valor;
 
-    //Falta dar formato a la fecha
     @Column(nullable = false)
     private LocalDate fechaSubasta;
+
+    //Relaciones
     @ManyToOne
     @JoinColumn(nullable = false)
     private Usuario usuario;
+
     @ManyToOne
     @JoinColumn(nullable = false)
     private Subasta subasta;

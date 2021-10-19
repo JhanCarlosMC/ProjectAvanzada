@@ -12,13 +12,14 @@ import java.util.List;
 import java.util.Map;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @ToString
 public class Producto implements Serializable {
 
-    //--------------------------Atributos propios de la entidad------------------------------------
+    //Atributos propios de la entidad
     @Id
     @EqualsAndHashCode.Include
     private String codigo;
@@ -40,14 +41,14 @@ public class Producto implements Serializable {
     @Min(0)
     private int descuento;
 
-    //Falta definir el tipo de dato de fecha
     @Column(name = "fecha_limite", nullable = false)
     private LocalDate fechaLimite;
 
     @ElementCollection
     @Column(nullable = false)
-    private Map<String, String> numTelefonos;
-    //--------------------------Relaciones------------------------------------
+    private Map<String, String> imagenes;
+
+    //Relaciones
     @ManyToOne
     @JoinColumn(nullable = false)
     private Usuario usuario;
@@ -75,5 +76,16 @@ public class Producto implements Serializable {
     @ManyToMany
     @ToString.Exclude
     private List<Usuario> usuarios;
+
+    //Constructor
+    public Producto(String codigo, String nombre, int unidades, String descripcion, int precio, int descuento, LocalDate fechaLimite) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.unidades = unidades;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.descuento = descuento;
+        this.fechaLimite = fechaLimite;
+    }
 }
 

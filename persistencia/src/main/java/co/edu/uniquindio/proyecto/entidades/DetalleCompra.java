@@ -1,9 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -14,9 +11,10 @@ import java.io.Serializable;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
+@ToString
 public class DetalleCompra implements Serializable {
 
-    //--------------------------Atributos propios de la entidad------------------------------------
+    //Atributos propios de la entidad
     @Id
     @EqualsAndHashCode.Include
     private String codigo;
@@ -29,11 +27,19 @@ public class DetalleCompra implements Serializable {
     @Column(nullable = false, name = "precio_producto")
     private int precioProducto;
 
+    //Relaciones
     @ManyToOne
     @JoinColumn(nullable = false)
     private Compra compra;
+
     @ManyToOne
     @JoinColumn(nullable = false)
     private Producto producto;
 
+    //Constructor
+    public DetalleCompra(String codigo, int unidades, int precioProducto) {
+        this.codigo = codigo;
+        this.unidades = unidades;
+        this.precioProducto = precioProducto;
+    }
 }

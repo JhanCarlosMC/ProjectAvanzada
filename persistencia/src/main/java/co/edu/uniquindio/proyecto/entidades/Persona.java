@@ -13,7 +13,7 @@ import java.io.Serializable;
 @ToString
 public class Persona implements Serializable {
 
-    //--------------------------Atributos propios de la entidad------------------------------------
+    //Atributos propios de la entidad
     @Id
     @EqualsAndHashCode.Include
     private String codigo;
@@ -27,7 +27,7 @@ public class Persona implements Serializable {
     @Column(length = 20, nullable = false)
     private String password;
 
-    //--------------------------Constructor------------------------------------
+    //Constructor
     public Persona(String codigo, String nombre, String email, String password) {
         this.codigo = codigo;
         this.nombre = nombre;

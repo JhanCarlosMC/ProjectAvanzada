@@ -14,7 +14,7 @@ import java.util.List;
 @ToString
 public class Subasta implements Serializable {
 
-    //--------------------------Atributos propios de la entidad------------------------------------
+    //Atributos propios de la entidad
     @Id
     @EqualsAndHashCode.Include
     private String codigo;
@@ -22,13 +22,16 @@ public class Subasta implements Serializable {
     @Column(nullable = false)
     private LocalDate fechaLimite;
 
+    //Relaciones
     @ManyToOne
     @JoinColumn(nullable = false)
     private Producto producto;
+
     @OneToMany(mappedBy = "subasta")
     @ToString.Exclude
     private List<DetalleSubasta> detalleSubastas;
 
+    //Constructor
     public Subasta(String codigo, LocalDate fechaLimite) {
         this.codigo = codigo;
         this.fechaLimite = fechaLimite;
