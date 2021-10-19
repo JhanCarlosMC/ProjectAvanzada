@@ -9,7 +9,8 @@ import java.util.Map;
 
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @ToString(callSuper = true)
 public class Usuario extends Persona implements Serializable {
