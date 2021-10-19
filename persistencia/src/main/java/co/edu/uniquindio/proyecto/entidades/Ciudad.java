@@ -18,15 +18,17 @@ public class Ciudad {
 
     //--------------------------Atributos propios de la entidad------------------------------------
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private String codigo;
-
+    private Integer codigo;
 
     @Column(length = 40, nullable = false)
     private String nombre;
 
+    //--------------------------Relaciones------------------------------------
     @OneToMany(mappedBy = "ciudad")
     private List<Usuario> usuarios;
+
     @OneToMany(mappedBy = "ciudad")
     private List<Producto> productos;
 

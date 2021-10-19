@@ -1,6 +1,7 @@
 package co.edu.uniquindio.proyecto.test;
 
-import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
+
+import co.edu.uniquindio.proyecto.repositorios.DetalleCompraRepo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -9,32 +10,32 @@ import org.springframework.test.context.jdbc.Sql;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class UsuarioTest {
-
+public class DetallerCompraTest {
     @Autowired
-    private UsuarioRepo usuarioRepo;
+    private DetalleCompraRepo detalleCompraRepo;
 
     //----------------------------------Metodos CRUD Test----------------------------------------
     @Test
-    public void registrarUsuarioTest(){
+    public void registrardetalleCompraTest(){
 
     }
 
     @Test
     @Sql("classpath:dataSet.sql")
-    public void eliminarUsuarioTest(){
+    public void eliminardetalleCompraTest(){
+
 
     }
 
     @Test
     @Sql("classpath:dataSet.sql")
-    public void actualizarUsuarioTest(){
+    public void actualizardetalleCompraTest(){
 
     }
 
     @Test
     @Sql("classpath:dataSet.sql")
-    public void listarUsuariosTest(){
+    public void listardetalleCompraTest(){
 
     }
 }
