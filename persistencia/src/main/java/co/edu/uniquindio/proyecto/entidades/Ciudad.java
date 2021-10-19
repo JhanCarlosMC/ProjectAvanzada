@@ -1,20 +1,17 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
-
-
 
 @Entity
 @Getter @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-public class Ciudad {
+
+public class Ciudad implements Serializable {
 
     //--------------------------Atributos propios de la entidad------------------------------------
     @Id
@@ -32,4 +29,12 @@ public class Ciudad {
     @OneToMany(mappedBy = "ciudad")
     private List<Producto> productos;
 
+    //Constructor Completo
+    public Ciudad(Integer codigo, String nombre)
+    {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.usuarios = usuarios;
+        this.productos = productos;
+    }
 }

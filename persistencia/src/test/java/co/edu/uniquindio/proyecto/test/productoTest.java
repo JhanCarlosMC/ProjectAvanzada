@@ -15,5 +15,7 @@ public class productoTest {
     @Autowired
     private ProductoRepo productoRepo;
 
+public class ProductoTest {
+
 
 }

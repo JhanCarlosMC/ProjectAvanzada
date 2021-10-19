@@ -1,32 +1,36 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import java.util.Date;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Getter @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-public class Subasta {
+@ToString
+public class Subasta implements Serializable {
 
     //--------------------------Atributos propios de la entidad------------------------------------
     @Id
     @EqualsAndHashCode.Include
     private String codigo;
 
-    //Falta definir el tipo de dato de fecha
-    private Date fechaLimite;
+    @Column(nullable = false)
+    private LocalDate fechaLimite;
+
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Producto producto;
     @OneToMany(mappedBy = "subasta")
+    @ToString.Exclude
     private List<DetalleSubasta> detalleSubastas;
+
+    public Subasta(String codigo, LocalDate fechaLimite) {
+        this.codigo = codigo;
+        this.fechaLimite = fechaLimite;
+    }
 }

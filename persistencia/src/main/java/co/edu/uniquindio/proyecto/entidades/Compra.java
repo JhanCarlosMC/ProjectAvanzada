@@ -4,8 +4,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
 @Getter @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-public class Compra {
+public class Compra implements Serializable {
 
     //--------------------------Atributos propios de la entidad------------------------------------
     @Id
@@ -21,15 +22,25 @@ public class Compra {
     private String codigo;
 
     //Definir formato de la fecha
-    private Date fechaCompra;
-
     @Column(nullable = false)
+    private LocalDate fechaCompra;
+
+    @Column(nullable = false, name = "medio_pago")
     private MedioPago medioPago;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Usuario usuario;
 
     @OneToMany(mappedBy = "compra")
     private List<DetalleCompra> detalleCompras;
 
+
+    //Constructor Completo
+    public Compra(String codigo, LocalDate fechaCompra, MedioPago medioPago)
+    {
+        this.codigo = codigo;
+        this.fechaCompra = fechaCompra;
+        this.medioPago = medioPago;
+    }
 }

@@ -9,7 +9,8 @@ import java.util.Map;
 
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @ToString(callSuper = true)
 public class Usuario extends Persona implements Serializable {
@@ -21,6 +22,7 @@ public class Usuario extends Persona implements Serializable {
 
     //--------------------------Relaciones------------------------------------
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Ciudad ciudad;
 
     @OneToMany(mappedBy = "usuario")
