@@ -31,7 +31,7 @@ public class ComentarioTest
     }
 
     @Test
-    @Sql("classpath:dataSetPrueba.sql")
+    @Sql("classpath:dataSet.sql")
     //Eliminar un comentario
     public void eliminarComentarioTest()
     {
@@ -42,7 +42,7 @@ public class ComentarioTest
     }
 
     @Test
-    @Sql("classpath:dataSetPrueba.sql")
+    @Sql("classpath:dataSet.sql")
     //Actualizar Comentario
     public void actualizarComentarioTest()
     {
@@ -53,7 +53,7 @@ public class ComentarioTest
     }
 
     @Test
-    @Sql("classpath:dataSetPrueba.sql")
+    @Sql("classpath:dataSet.sql")
     //Mostrar lista de comentarios de un usuario
     public void listarComentariosTest()
     {

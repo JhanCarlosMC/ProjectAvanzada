@@ -52,7 +52,7 @@ public class AdministradorTest {
     }
 
     @Test
-    @Sql("classpath:datasetAdministrador.sql")
+    @Sql("classpath:dataSet.sql")
     public void listarAdministradoresTest(){
         
         List<Administrador>administradores = administradorRepo.findAll();

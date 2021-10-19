@@ -37,5 +37,9 @@ public class DetalleSubasta implements Serializable {
     @JoinColumn(nullable = false)
     private Subasta subasta;
 
-
+    public DetalleSubasta(String codigo, int valor, LocalDate fechaSubasta) {
+        this.codigo = codigo;
+        this.valor = valor;
+        this.fechaSubasta = fechaSubasta;
+    }
 }

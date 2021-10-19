@@ -32,7 +32,7 @@ public class CiudadTest
     }
 
     @Test
-    @Sql("classpath:dataSetPrueba.sql")
+    @Sql("classpath:dataSet.sql")
     //Eliminar una ciudad
     public void eliminarCiudadTest()
     {
@@ -43,7 +43,7 @@ public class CiudadTest
     }
 
     @Test
-    @Sql("classpath:dataSetPrueba.sql")
+    @Sql("classpath:dataSet.sql")
     //Actualizar una ciudad
     public void actualizarCiudadTest()
     {
@@ -54,7 +54,7 @@ public class CiudadTest
     }
 
     @Test
-    @Sql("classpath:dataSetPrueba.sql")
+    @Sql("classpath:dataSet.sql")
     //Mostrar lista de ciudades
     public void listarCiudadesTest()
     {

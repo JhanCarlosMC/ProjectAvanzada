@@ -10,12 +10,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class productoTest {
+public class ProductoTest {
 
     @Autowired
     private ProductoRepo productoRepo;
-
-public class ProductoTest {
 
 
 }

@@ -22,6 +22,7 @@ public class MensajeTest {
 
     //----------------------------------Metodos CRUD Test----------------------------------------
     @Test
+    //registrar un mensaje
     public void registrarMensajeTest(){
         Mensaje mensaje = new Mensaje("1", "mensaje", "emisor", LocalDate.of(2018, 10, 30));
         Mensaje mensajeGuardado = mensajeRepo.save(mensaje);
@@ -31,6 +32,7 @@ public class MensajeTest {
 
     @Test
     @Sql("classpath:dataSet.sql")
+    //Elinar un mensaje
     public void eliminarMensajeTest(){
 
         mensajeRepo.deleteById("1");
@@ -43,6 +45,7 @@ public class MensajeTest {
 
     @Test
     @Sql("classpath:dataSet.sql")
+    //Actualizar un mensaje
     public void actualizarMensajeTest(){
 
         Mensaje mensajeGuardado =  mensajeRepo.findById("1").orElse(null);
@@ -51,15 +54,16 @@ public class MensajeTest {
 
         Mensaje mensajeBuscado = mensajeRepo.findById("1").orElse(null);
         Assertions.assertEquals("Mensaje nuevo",mensajeBuscado.getMensaje());
+
     }
 
     @Test
     @Sql("classpath:dataSet.sql")
+    //Mostrar lista de mensajes de un usuario
     public void listarMensajeTest(){
 
         List<Mensaje> mensajes = mensajeRepo.findAll();
         mensajes.forEach( u -> System.out.println(u));
-
 
     }
 }

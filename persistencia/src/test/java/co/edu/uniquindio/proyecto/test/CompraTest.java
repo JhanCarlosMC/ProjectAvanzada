@@ -33,7 +33,7 @@ public class CompraTest
     }
 
     @Test
-    @Sql("classpath:dataSetPrueba.sql")
+    @Sql("classpath:dataSet.sql")
     //Eliminar una compra
     public void eliminarCompraTest()
     {
@@ -44,7 +44,7 @@ public class CompraTest
     }
 
     @Test
-    @Sql("classpath:dataSetPrueba.sql")
+    @Sql("classpath:dataSet.sql")
     //Actualizar una compra
     public void actualizarCompraTest()
     {
@@ -56,7 +56,7 @@ public class CompraTest
     }
 
     @Test
-    @Sql("classpath:dataSetPrueba.sql")
+    @Sql("classpath:dataSet.sql")
     //Mostrar lista de compras de un usuario
     public void listarComprasTest()
     {

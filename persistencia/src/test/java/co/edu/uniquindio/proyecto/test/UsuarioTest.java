@@ -29,9 +29,6 @@ public class UsuarioTest {
 
     @Test
     @Sql("classpath:dataSet.sql")
-
-    public void eliminarUsuarioTest(){
-
     public void eliminarUsuarioTest() {
         usuarioRepo.deleteById("1");
         Usuario usuarioBorrado = usuarioRepo.findById("1").orElse(null);
@@ -52,7 +49,7 @@ public class UsuarioTest {
 
     @Test
     @Sql("classpath:dataSet.sql")
-    public void listarUsuariosTest(){
+    public void listarUsuariosTest() {
         List<Usuario> listaUsuarios = usuarioRepo.findAll();
         System.out.println(listaUsuarios);
 
