@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -29,7 +30,8 @@ public class Mensaje {
     private String emisor;
 
     //Definir fomato de la fecha
-    private Date fecha;
+    @Column(nullable = false)
+    private LocalDate fecha;
 
     @ManyToOne
     private Chat chat;

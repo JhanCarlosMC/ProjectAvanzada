@@ -11,13 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 @Getter @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-public class Comentario {
+public class Comentario implements Serializable {
 
     //--------------------------Atributos propios de la entidad------------------------------------
     @Id
@@ -31,8 +33,8 @@ public class Comentario {
     private String respuesta;
 
     //Definir formato de fecha
-    @Column(name = "fecha_comentario")
-    private Date fechaComentario;
+    @Column(name = "fecha_comentario", nullable = false)
+    private LocalDate fechaComentario;
 
     @Min(0) @Max(5)
     @Column(nullable = false)
@@ -42,6 +44,5 @@ public class Comentario {
     private Usuario usuario;
     @ManyToOne
     private Producto producto;
-
 
 }
