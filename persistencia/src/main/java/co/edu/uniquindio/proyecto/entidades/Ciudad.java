@@ -3,16 +3,15 @@ package co.edu.uniquindio.proyecto.entidades;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
-
-
 
 @Entity
 @Getter @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-public class Ciudad
-{
+
+public class Ciudad implements Serializable {
 
     //--------------------------Atributos propios de la entidad------------------------------------
     @Id

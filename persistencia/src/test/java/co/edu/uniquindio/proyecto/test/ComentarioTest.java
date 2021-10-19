@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class ComentarioTest
     @Test
     public void registrarComentarioTest()
     {
-        Comentario miCt = new Comentario("0", "Mensaje Prueba", "Respuesta Prueba", new Date(), 5);
+        Comentario miCt = new Comentario("0", "Mensaje Prueba", "Respuesta Prueba", LocalDate.of(2018, 10, 30), 5);
         Comentario miCtGuardado = miCtRepo.save(miCt);
         Assertions.assertNotNull(miCtGuardado);
     }

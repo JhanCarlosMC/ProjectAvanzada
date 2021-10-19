@@ -3,8 +3,12 @@ package co.edu.uniquindio.proyecto.entidades;
 import lombok.*;
 
 import javax.persistence.*;
+<<<<<<< HEAD
 import java.io.Serializable;
 import java.time.LocalDate;
+
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,6 +27,7 @@ public class Subasta implements Serializable {
     private LocalDate fechaLimite;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Producto producto;
     @OneToMany(mappedBy = "subasta")
     @ToString.Exclude
