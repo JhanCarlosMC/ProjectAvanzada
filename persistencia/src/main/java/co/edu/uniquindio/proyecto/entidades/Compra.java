@@ -4,7 +4,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -34,4 +33,12 @@ public class Compra implements Serializable {
     @OneToMany(mappedBy = "compra")
     private List<DetalleCompra> detalleCompras;
 
+
+    //Constructor Completo
+    public Compra(String codigo, Date fechaCompra, MedioPago medioPago)
+    {
+        this.codigo = codigo;
+        this.fechaCompra = fechaCompra;
+        this.medioPago = medioPago;
+    }
 }

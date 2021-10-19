@@ -1,4 +1,6 @@
 package co.edu.uniquindio.proyecto.test;
 
-public class productoTest {
+public class productoTest
+{
+
 }
