@@ -28,6 +28,7 @@ public class DetalleSubasta implements Serializable {
     private int valor;
 
     //Falta dar formato a la fecha
+    @Column(nullable = false)
     private LocalDate fechaSubasta;
     @ManyToOne
     @JoinColumn(nullable = false)

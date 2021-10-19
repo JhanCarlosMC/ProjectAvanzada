@@ -41,7 +41,7 @@ public class Producto implements Serializable {
     private int descuento;
 
     //Falta definir el tipo de dato de fecha
-    @Column(name = "fecha_limite")
+    @Column(name = "fecha_limite", nullable = false)
     private LocalDate fechaLimite;
 
     @ElementCollection

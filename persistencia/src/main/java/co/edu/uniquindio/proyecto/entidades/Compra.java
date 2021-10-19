@@ -22,12 +22,14 @@ public class Compra implements Serializable {
     private String codigo;
 
     //Definir formato de la fecha
+    @Column(nullable = false)
     private LocalDate fechaCompra;
 
     @Column(nullable = false, name = "medio_pago")
     private MedioPago medioPago;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Usuario usuario;
 
     @OneToMany(mappedBy = "compra")
@@ -35,7 +37,7 @@ public class Compra implements Serializable {
 
 
     //Constructor Completo
-    public Compra(String codigo, Date fechaCompra, MedioPago medioPago)
+    public Compra(String codigo, LocalDate fechaCompra, MedioPago medioPago)
     {
         this.codigo = codigo;
         this.fechaCompra = fechaCompra;

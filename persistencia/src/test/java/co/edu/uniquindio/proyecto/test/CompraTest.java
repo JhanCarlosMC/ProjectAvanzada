@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class CompraTest
     @Test
     public void registrarCompraTest()
     {
-        Compra miCp = new Compra("0", new Date(), MedioPago.TARJETA);
+        Compra miCp = new Compra("0", LocalDate.of(2018, 10, 30), MedioPago.TARJETA);
         Compra miCpGuardado = miCpRepo.save(miCp);
         Assertions.assertNotNull(miCpGuardado);
     }
