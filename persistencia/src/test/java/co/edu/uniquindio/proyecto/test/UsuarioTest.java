@@ -9,7 +9,8 @@ import org.springframework.test.context.jdbc.Sql;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class UsuarioTest {
+public class UsuarioTest
+{
 
     @Autowired
     private UsuarioRepo usuarioRepo;
@@ -17,25 +18,29 @@ public class UsuarioTest {
     //----------------------------------Metodos CRUD Test----------------------------------------
     @Test
     //@Sql("classpath:dataSet.sql")
-    public void registrarUsuarioTest(){
+    public void registrarUsuarioTest()
+    {
 
     }
 
     @Test
     //@Sql("classpath:dataSet.sql")
-    public void eliminarUsuarioTest(){
+    public void eliminarUsuarioTest()
+    {
 
     }
 
     @Test
     //@Sql("classpath:dataSet.sql")
-    public void actualizarUsuarioTest(){
+    public void actualizarUsuarioTest()
+    {
 
     }
 
     @Test
     //@Sql("classpath:dataSet.sql")
-    public void listarUsuariosTest(){
+    public void listarUsuariosTest()
+    {
 
     }
 }
