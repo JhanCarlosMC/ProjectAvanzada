@@ -3,12 +3,8 @@ package co.edu.uniquindio.proyecto.entidades;
 import lombok.*;
 
 import javax.persistence.*;
-<<<<<<< HEAD
 import java.io.Serializable;
 import java.time.LocalDate;
-
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Entity
