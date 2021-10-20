@@ -27,7 +27,6 @@ public class Mensaje {
     @Column(nullable = false)
     private String emisor;
 
-    //Definir fomato de la fecha
     @Column(nullable = false)
     private LocalDate fecha;
 

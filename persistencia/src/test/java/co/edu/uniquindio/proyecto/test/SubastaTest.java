@@ -50,7 +50,7 @@ public class SubastaTest {
 
         Subasta subastaUpdate = subastaRepo.findById("1").orElse(null);
         assert subastaUpdate != null;
-        Assertions.assertEquals(LocalDate.of(2021, 10, 20),subastaUpdate.getFechaLimite());
+        Assertions.assertEquals(LocalDate.of(2021, 10, 20), subastaUpdate.getFechaLimite());
     }
 
     @Test

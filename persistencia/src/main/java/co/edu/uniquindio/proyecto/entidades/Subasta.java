@@ -19,7 +19,7 @@ public class Subasta implements Serializable {
     @EqualsAndHashCode.Include
     private String codigo;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "fecha_limite")
     private LocalDate fechaLimite;
 
     //Relaciones

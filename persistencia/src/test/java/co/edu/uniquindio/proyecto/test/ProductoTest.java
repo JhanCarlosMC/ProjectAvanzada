@@ -22,8 +22,8 @@ public class ProductoTest {
     //----------------------------------Metodos CRUD Test----------------------------------------
     //Test para registrar un producto
     @Test
-    public void regsitrarProductoTest(){
-        Producto newProducto = new Producto("4","Play Station 6", 5, "Es la mas nueva", 10000, 0, LocalDate.of(2021, 10, 20));
+    public void regsitrarProductoTest() {
+        Producto newProducto = new Producto("4", "Play Station 6", 5, "Es la mas nueva", 10000, 0, LocalDate.of(2021, 10, 20));
         Producto saveProducto = productoRepo.save(newProducto);
 
         Assertions.assertNotNull(saveProducto);
@@ -32,7 +32,7 @@ public class ProductoTest {
     //Test para eliminar un producto
     @Test
     @Sql("classpath:dataSet.sql")
-    public void eliminarProductoTest(){
+    public void eliminarProductoTest() {
         productoRepo.deleteById("2");
         Producto productoBorrado = productoRepo.findById("2").orElse(null);
 
@@ -41,19 +41,19 @@ public class ProductoTest {
 
     @Test
     @Sql("classpath:dataSet.sql")
-    public void actualizarProductoTest(){
+    public void actualizarProductoTest() {
         Producto productoGuardado = productoRepo.findById("1").orElse(null);
         assert productoGuardado != null;
         productoGuardado.setDescuento(0);
 
         Producto productoUpdate = productoRepo.findById("1").orElse(null);
         assert productoUpdate != null;
-        Assertions.assertEquals(0,productoUpdate.getDescuento());
+        Assertions.assertEquals(0, productoUpdate.getDescuento());
     }
 
     @Test
     @Sql("classpath:dataSet.sql")
-    public void listarProductoTest(){
+    public void listarProductoTest() {
         List<Producto> listaProductos = productoRepo.findAll();
         listaProductos.forEach(System.out::println);
     }
