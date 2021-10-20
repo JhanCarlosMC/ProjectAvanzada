@@ -16,6 +16,7 @@ public class Categoria implements Serializable {
     //Atributos propios de la entidad
     @Id
     @EqualsAndHashCode.Include
+    @Column(length = 40)
     private String codigo;
 
     @Column(length = 40, nullable = false)
@@ -26,4 +27,8 @@ public class Categoria implements Serializable {
     @ToString.Exclude
     private List<Producto> productos;
 
+    public Categoria(String codigo, String nombre) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+    }
 }

@@ -20,6 +20,7 @@ public class Producto implements Serializable {
     //Atributos propios de la entidad
     @Id
     @EqualsAndHashCode.Include
+    @Column(length = 40)
     private String codigo;
 
     @Column(length = 40, nullable = false)
@@ -80,6 +81,7 @@ public class Producto implements Serializable {
     private List<Usuario> usuarios;
 
     //Constructor
+    @Builder
     public Producto(String codigo, String nombre, int unidades, String descripcion, int precio, int descuento, LocalDate fechaLimite) {
         this.codigo = codigo;
         this.nombre = nombre;

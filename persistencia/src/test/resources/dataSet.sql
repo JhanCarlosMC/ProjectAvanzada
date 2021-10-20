@@ -15,7 +15,7 @@ insert into compra values ("1", "2021-10-18", '0', "1");
 insert into compra values ("2", "2021-10-18", '1', "1");
 insert into compra values ("3", "2021-10-18", '2', "1");
 
-insert into producto values ("1", "Sirve para guardar agua", null, "2021-10-20", "Botella de agua", '100', '2','1', '1');
+insert into producto values ("1", "Sirve para guardar agua", '10', "2021-10-20", "Botella de agua", '100', '2','1', '1');
 insert into producto values ("2", "Lo ultimo en waracha", '20', "2021-10-20", "Play 8", '99999', '10','2', '2');
 insert into producto values ("3", "Celuco", '30', "2021-10-20", "Iphone 15", '15032', '5','3', '3');
 
