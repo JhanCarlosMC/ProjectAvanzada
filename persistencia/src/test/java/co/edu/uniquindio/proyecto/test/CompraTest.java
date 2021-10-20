@@ -18,25 +18,22 @@ import java.util.List;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class CompraTest
-{
+public class CompraTest {
     @Autowired
     private CompraRepo miCpRepo;
 
     //----------------------------------Metodos CRUD Test----------------------------------------
     @Test
-    public void registrarCompraTest()
-    {
+    public void registrarCompraTest() {
         Compra miCp = new Compra("0", LocalDate.of(2018, 10, 30), MedioPago.TARJETA);
         Compra miCpGuardado = miCpRepo.save(miCp);
         Assertions.assertNotNull(miCpGuardado);
     }
 
     @Test
-    @Sql("classpath:dataSetPrueba.sql")
+    @Sql("classpath:dataSet.sql")
     //Eliminar una compra
-    public void eliminarCompraTest()
-    {
+    public void eliminarCompraTest() {
         miCpRepo.deleteById("1");
         Compra miCp = miCpRepo.findById("1").orElse(null);
 
@@ -44,10 +41,9 @@ public class CompraTest
     }
 
     @Test
-    @Sql("classpath:dataSetPrueba.sql")
+    @Sql("classpath:dataSet.sql")
     //Actualizar una compra
-    public void actualizarCompraTest()
-    {
+    public void actualizarCompraTest() {
         Compra miCp = miCpRepo.findById("1").orElse(null);
         miCp.setMedioPago(MedioPago.DECONTADO);
         Compra miCNuevo = miCpRepo.save(miCp);
@@ -56,10 +52,9 @@ public class CompraTest
     }
 
     @Test
-    @Sql("classpath:dataSetPrueba.sql")
+    @Sql("classpath:dataSet.sql")
     //Mostrar lista de compras de un usuario
-    public void listarComprasTest()
-    {
+    public void listarComprasTest() {
         List<Compra> listaCompras = miCpRepo.findAll();
 
         Assertions.assertEquals(3, listaCompras.size());

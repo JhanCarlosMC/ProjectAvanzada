@@ -13,7 +13,7 @@ import java.util.List;
 @ToString
 public class Categoria implements Serializable {
 
-    //--------------------------Atributos propios de la entidad------------------------------------
+    //Atributos propios de la entidad
     @Id
     @EqualsAndHashCode.Include
     private String codigo;
@@ -21,10 +21,9 @@ public class Categoria implements Serializable {
     @Column(length = 40, nullable = false)
     private String nombre;
 
-    //--------------------------Relaciones------------------------------------
+    //Relaciones
     @ManyToMany(mappedBy = "categorias")
     @ToString.Exclude
     private List<Producto> productos;
-
 
 }

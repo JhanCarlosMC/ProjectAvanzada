@@ -15,12 +15,12 @@ import java.util.Map;
 @ToString(callSuper = true)
 public class Usuario extends Persona implements Serializable {
 
-    //--------------------------Atributos propios de la entidad------------------------------------
+    //Atributos propios de la entidad
     @ElementCollection
     @Column(nullable = false)
     private Map<String, String> numTelefonos;
 
-    //--------------------------Relaciones------------------------------------
+    //Relaciones
     @ManyToOne
     @JoinColumn(nullable = false)
     private Ciudad ciudad;
@@ -49,7 +49,7 @@ public class Usuario extends Persona implements Serializable {
     @ToString.Exclude
     private List<DetalleSubasta> detalleSubastas;
 
-    //--------------------------Constructor SuperClase------------------------------------
+    //Constructor SuperClase
     public Usuario(String codigo, String nombre, String email, String password) {
         super(codigo, nombre, email, password);
     }

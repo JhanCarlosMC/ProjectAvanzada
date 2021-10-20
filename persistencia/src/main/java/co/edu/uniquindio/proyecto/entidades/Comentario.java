@@ -1,24 +1,21 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Getter @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
+@ToString
 public class Comentario implements Serializable {
 
-    //--------------------------Atributos propios de la entidad------------------------------------
+    //Atributos propios de la entidad
     @Id
     @EqualsAndHashCode.Include
     private String codigo;
@@ -29,7 +26,6 @@ public class Comentario implements Serializable {
     @Column(length = 255, nullable = false)
     private String respuesta;
 
-    //Definir formato de fecha
     @Column(name = "fecha_comentario", nullable = false)
     private LocalDate fechaComentario;
 
@@ -37,6 +33,7 @@ public class Comentario implements Serializable {
     @Column(nullable = false)
     private int calificacion;
 
+    //Relaciones
     @ManyToOne
     @JoinColumn(nullable = false)
     private Usuario usuario;

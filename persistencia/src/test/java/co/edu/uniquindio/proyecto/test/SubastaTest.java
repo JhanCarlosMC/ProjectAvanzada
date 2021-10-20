@@ -19,7 +19,8 @@ public class SubastaTest {
     @Autowired
     private SubastaRepo subastaRepo;
 
-    //----------------------------------Metodos CRUD Test----------------------------------------
+    //Metodos CRUD Test
+    //Test para registrar un subasta
     @Test
     public void registrarSubastaTest() {
         Subasta newSubasta = new Subasta("1", LocalDate.of(2018, 10, 30));
@@ -28,22 +29,34 @@ public class SubastaTest {
         Assertions.assertNotNull(saveSubasta);
     }
 
+    //Test para eliminar una subasta
     @Test
     @Sql("classpath:dataSet.sql")
     public void eliminarSubastaTest() {
+        subastaRepo.deleteById("2");
+        Subasta subastaBorrada = subastaRepo.findById("2").orElse(null);
 
+        Assertions.assertNull(subastaBorrada);
     }
 
+    //Test para actualizar una subasta
     @Test
     @Sql("classpath:dataSet.sql")
     public void actualizarSubastaTest() {
+        Subasta subastaGuardada = subastaRepo.findById("1").orElse(null);
+        assert subastaGuardada != null;
+        subastaGuardada.setFechaLimite(LocalDate.of(2021, 10, 20));
+        subastaRepo.save(subastaGuardada);
 
+        Subasta subastaUpdate = subastaRepo.findById("1").orElse(null);
+        assert subastaUpdate != null;
+        Assertions.assertEquals(LocalDate.of(2021, 10, 20),subastaUpdate.getFechaLimite());
     }
 
     @Test
     @Sql("classpath:dataSet.sql")
     public void listarSubastaTest() {
         List<Subasta> listaSubastas = subastaRepo.findAll();
-        System.out.println(listaSubastas);
+        listaSubastas.forEach(System.out::println);
     }
 }

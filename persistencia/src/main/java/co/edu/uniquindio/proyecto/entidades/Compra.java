@@ -1,9 +1,7 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -14,27 +12,28 @@ import java.util.List;
 @Getter @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
+@ToString
 public class Compra implements Serializable {
 
-    //--------------------------Atributos propios de la entidad------------------------------------
+    //Atributos propios de la entidad
     @Id
     @EqualsAndHashCode.Include
     private String codigo;
 
-    //Definir formato de la fecha
     @Column(nullable = false)
     private LocalDate fechaCompra;
 
     @Column(nullable = false, name = "medio_pago")
     private MedioPago medioPago;
 
+    //Relaciones
     @ManyToOne
     @JoinColumn(nullable = false)
     private Usuario usuario;
 
     @OneToMany(mappedBy = "compra")
+    @ToString.Exclude
     private List<DetalleCompra> detalleCompras;
-
 
     //Constructor Completo
     public Compra(String codigo, LocalDate fechaCompra, MedioPago medioPago)

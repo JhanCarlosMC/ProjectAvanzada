@@ -16,26 +16,23 @@ import java.util.List;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class CiudadTest
-{
+public class CiudadTest {
     @Autowired
     private CiudadRepo miCRepo;
 
     //----------------------------------Metodos CRUD Test----------------------------------------
     @Test
     //Registrar una ciudad
-    public void registrarCiudadTest()
-    {
-        Ciudad  miC = new Ciudad(0, "Armenia");
+    public void registrarCiudadTest() {
+        Ciudad miC = new Ciudad(0, "Armenia");
         Ciudad miCGuardado = miCRepo.save(miC);
         Assertions.assertNotNull(miCGuardado);
     }
 
     @Test
-    @Sql("classpath:dataSetPrueba.sql")
+    @Sql("classpath:dataSet.sql")
     //Eliminar una ciudad
-    public void eliminarCiudadTest()
-    {
+    public void eliminarCiudadTest() {
         miCRepo.deleteById(1);
         Ciudad miC = miCRepo.findById(1).orElse(null);
 
@@ -43,10 +40,9 @@ public class CiudadTest
     }
 
     @Test
-    @Sql("classpath:dataSetPrueba.sql")
+    @Sql("classpath:dataSet.sql")
     //Actualizar una ciudad
-    public void actualizarCiudadTest()
-    {
+    public void actualizarCiudadTest() {
         Ciudad miC = miCRepo.findById(1).orElse(null);
         miC.setNombre("Pereira");
         Ciudad miCNuevo = miCRepo.save(miC);
@@ -54,10 +50,9 @@ public class CiudadTest
     }
 
     @Test
-    @Sql("classpath:dataSetPrueba.sql")
+    @Sql("classpath:dataSet.sql")
     //Mostrar lista de ciudades
-    public void listarCiudadesTest()
-    {
+    public void listarCiudadesTest() {
         List<Ciudad> listaCiudades = miCRepo.findAll();
 
         Assertions.assertEquals(3, listaCiudades.size());
