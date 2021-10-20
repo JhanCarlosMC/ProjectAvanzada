@@ -17,6 +17,7 @@ public class Subasta implements Serializable {
     //Atributos propios de la entidad
     @Id
     @EqualsAndHashCode.Include
+    @Column(length = 40)
     private String codigo;
 
     @Column(nullable = false)

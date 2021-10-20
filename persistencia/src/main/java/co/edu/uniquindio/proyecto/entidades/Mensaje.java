@@ -19,6 +19,7 @@ public class Mensaje {
     //Atributos propios de la entidad
     @Id
     @EqualsAndHashCode.Include
+    @Column(length = 40)
     private String codigo;
 
     @Column(length = 255, nullable = false)

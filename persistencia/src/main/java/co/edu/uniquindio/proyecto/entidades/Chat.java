@@ -16,6 +16,7 @@ public class Chat implements Serializable {
     //Atributos propios de la entidad
     @Id
     @EqualsAndHashCode.Include
+    @Column(length = 40)
     private String codigo;
 
     //Relaciones
@@ -30,4 +31,10 @@ public class Chat implements Serializable {
     @OneToMany(mappedBy = "chat")
     @ToString.Exclude
     private List<Mensaje> mensajes;
+
+    public Chat(String codigo, Usuario usuario, Producto producto) {
+        this.codigo = codigo;
+        this.usuario = usuario;
+        this.producto = producto;
+    }
 }
