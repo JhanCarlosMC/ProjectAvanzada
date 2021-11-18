@@ -17,7 +17,7 @@ public class Usuario extends Persona implements Serializable {
 
     //Atributos propios de la entidad
     @ElementCollection
-    @Column(nullable = false)
+    @Column(nullable = false, name = "num_telefonos")
     private Map<String, String> numTelefonos;
 
     //Relaciones

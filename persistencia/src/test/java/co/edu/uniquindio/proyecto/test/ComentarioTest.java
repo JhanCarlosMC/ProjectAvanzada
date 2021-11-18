@@ -1,6 +1,5 @@
 package co.edu.uniquindio.proyecto.test;
 
-import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Comentario;
 import co.edu.uniquindio.proyecto.repositorios.ComentarioRepo;
 import org.junit.jupiter.api.Assertions;
@@ -11,20 +10,19 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class ComentarioTest {
     @Autowired
-    private ComentarioRepo miCtRepo;
+    private ComentarioRepo comentarioRepo;
 
     //----------------------------------Metodos CRUD Test----------------------------------------
     @Test
     public void registrarComentarioTest() {
         Comentario miCt = new Comentario("0", "Mensaje Prueba", "Respuesta Prueba", LocalDate.of(2018, 10, 30), 5);
-        Comentario miCtGuardado = miCtRepo.save(miCt);
+        Comentario miCtGuardado = comentarioRepo.save(miCt);
         Assertions.assertNotNull(miCtGuardado);
     }
 
@@ -32,8 +30,8 @@ public class ComentarioTest {
     @Sql("classpath:dataSet.sql")
     //Eliminar un comentario
     public void eliminarComentarioTest() {
-        miCtRepo.deleteById("1");
-        Comentario miCt = miCtRepo.findById("1").orElse(null);
+        comentarioRepo.deleteById("1");
+        Comentario miCt = comentarioRepo.findById("1").orElse(null);
 
         Assertions.assertNull(miCt);
     }
@@ -42,9 +40,9 @@ public class ComentarioTest {
     @Sql("classpath:dataSet.sql")
     //Actualizar Comentario
     public void actualizarComentarioTest() {
-        Comentario miCt = miCtRepo.findById("1").orElse(null);
+        Comentario miCt = comentarioRepo.findById("1").orElse(null);
         miCt.setCalificacion(1);
-        Comentario miCNuevo = miCtRepo.save(miCt);
+        Comentario miCNuevo = comentarioRepo.save(miCt);
         Assertions.assertEquals(1, miCNuevo.getCalificacion());
     }
 
@@ -52,7 +50,7 @@ public class ComentarioTest {
     @Sql("classpath:dataSet.sql")
     //Mostrar lista de comentarios de un usuario
     public void listarComentariosTest() {
-        List<Comentario> listaComentario = miCtRepo.findAll();
+        List<Comentario> listaComentario = comentarioRepo.findAll();
 
         Assertions.assertEquals(3, listaComentario.size());
     }

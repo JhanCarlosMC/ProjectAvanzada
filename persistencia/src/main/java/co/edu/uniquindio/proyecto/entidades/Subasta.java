@@ -20,7 +20,7 @@ public class Subasta implements Serializable {
     @Column(length = 40)
     private String codigo;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "fecha_limite")
     private LocalDate fechaLimite;
 
     //Relaciones

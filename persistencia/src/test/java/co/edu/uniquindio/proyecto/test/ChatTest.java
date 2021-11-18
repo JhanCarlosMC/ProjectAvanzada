@@ -30,6 +30,7 @@ public class ChatTest {
     @Autowired
     private UsuarioRepo usuarioRepo;
 
+    //Test para registrar un chat
     @Test
     public void registrarChatTest(){
         Producto producto = Producto.builder()
@@ -48,6 +49,7 @@ public class ChatTest {
         Assertions.assertNotNull(chatGuardado);
     }
 
+    //Test para eliminar un chat
     @Test
     @Sql("classpath:dataSet.sql")
     public void eliminarChatTest(){
@@ -69,6 +71,7 @@ public class ChatTest {
         Assertions.assertNull(chatBuscado);
     }
 
+    //Test para actualizar un chat
     @Test
     public void actualizarChatTest(){
         Producto producto = Producto.builder()
@@ -94,14 +97,16 @@ public class ChatTest {
         chatRepo.save(chatGuardado);
 
         Chat chatBuscado = chatRepo.findById("1").orElse(null);
+        assert chatBuscado != null;
         Assertions.assertEquals(producto2,chatBuscado.getProducto());
     }
 
+    //Test para listar los chat
     @Test
     @Sql("classpath:dataSet.sql")
     public void listarChatTest(){
 
         List<Chat> chats = chatRepo.findAll();
-        chats.forEach(c -> System.out.println(c));
+        chats.forEach(System.out::println);
     }
 }

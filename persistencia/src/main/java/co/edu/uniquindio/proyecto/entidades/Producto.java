@@ -44,7 +44,7 @@ public class Producto implements Serializable {
     private LocalDate fechaLimite;
 
     @ElementCollection
-    @Column(nullable = true)
+    @Column(nullable = false)
     private Map<String, String> imagenes;
 
     //Relaciones

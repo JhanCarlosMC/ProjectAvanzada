@@ -26,7 +26,7 @@ public class DetalleSubasta implements Serializable {
     @Column(nullable = false)
     private int valor;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "fecha_subasta")
     private LocalDate fechaSubasta;
 
     //Relaciones

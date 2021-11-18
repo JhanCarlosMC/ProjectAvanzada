@@ -1,6 +1,5 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-public enum MedioPago
-{
-    TARJETA, DECONTADO
+public enum MedioPago {
+    TARJETA, CONTADO, TRANSFERENCIA, CHEQUE
 }
