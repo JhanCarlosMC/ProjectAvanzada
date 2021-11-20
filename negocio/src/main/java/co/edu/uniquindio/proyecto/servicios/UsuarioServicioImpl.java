@@ -37,7 +37,7 @@ public class UsuarioServicioImpl implements UsuarioServicio{
             throw new Exception("El email del usuario ya existe");
         }
 
-        buscado = usuarioRepo.findByEmail(u.getUsername());
+//        buscado = usuarioRepo.findByEmail(u.getUsername());
         if(buscado.isPresent()){
             throw new Exception("El username ya existe");
         }
