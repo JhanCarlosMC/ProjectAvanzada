@@ -47,4 +47,9 @@ public class CiudadServicioImpl implements CiudadServicio {
     public List<Ciudad> listaCiudades() {
         return ciudadRepo.findAll();
     }
+
+    @Override
+    public Ciudad obtenerCiudad(int id) {
+        return ciudadRepo.getById(id);
+    }
 }

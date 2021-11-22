@@ -47,4 +47,9 @@ public class CompraServicioImpl implements CompraServicio{
     public List<Compra> listaCompras() {
         return compraRepo.findAll();
     }
+
+    @Override
+    public Compra obtenerCompra(String id) {
+        return compraRepo.getById(id);
+    }
 }

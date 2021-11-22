@@ -51,4 +51,9 @@ public class CategoriaServicioImpl implements CategoriaServicio {
     public List<Categoria> listaCategorias() {
         return categoriaRepo.findAll();
     }
+
+    @Override
+    public Categoria obtenerCategoria(String id) {
+        return categoriaRepo.getById(id);
+    }
 }

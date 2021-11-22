@@ -13,4 +13,6 @@ public interface DetalleCompraServicio {
     void eliminarDetalleCompra(String codigo) throws Exception;
 
     List<DetalleCompra> listaDetallesCompra();
+
+    DetalleCompra obtenerDetalleCompra(String id);
 }

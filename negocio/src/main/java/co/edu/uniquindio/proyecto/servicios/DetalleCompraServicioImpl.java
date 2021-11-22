@@ -48,4 +48,9 @@ public class DetalleCompraServicioImpl implements DetalleCompraServicio{
     public List<DetalleCompra> listaDetallesCompra() {
         return detalleCompraRepo.findAll();
     }
+
+    @Override
+    public DetalleCompra obtenerDetalleCompra(String id) {
+        return detalleCompraRepo.getById(id);
+    }
 }

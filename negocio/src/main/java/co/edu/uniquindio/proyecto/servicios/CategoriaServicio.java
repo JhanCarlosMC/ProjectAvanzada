@@ -13,5 +13,7 @@ public interface CategoriaServicio {
     void eliminarCategoria(String codigo) throws Exception;
 
     List<Categoria> listaCategorias();
+
+    Categoria obtenerCategoria(String id);
 }
 

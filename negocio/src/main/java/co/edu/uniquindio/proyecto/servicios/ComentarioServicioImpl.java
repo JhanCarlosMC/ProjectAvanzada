@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ComentarioServicioImpl implements ComentarioServicio{
+public class ComentarioServicioImpl implements ComentarioServicio {
 
     private final ComentarioRepo comentarioRepo;
 
@@ -25,7 +25,7 @@ public class ComentarioServicioImpl implements ComentarioServicio{
     public Comentario actualzarComentario(Comentario comentario) throws Exception {
         Optional<Comentario> buscado = comentarioRepo.findById(comentario.getCodigo());
 
-        if (buscado.isEmpty()){
+        if (buscado.isEmpty()) {
             throw new Exception("El comentario no existe");
         }
 
@@ -36,7 +36,7 @@ public class ComentarioServicioImpl implements ComentarioServicio{
     public void eliminarComentario(String codigo) throws Exception {
         Optional<Comentario> buscado = comentarioRepo.findById(codigo);
 
-        if (buscado.isEmpty()){
+        if (buscado.isEmpty()) {
             throw new Exception("El comentario no existe");
         }
 
@@ -46,5 +46,10 @@ public class ComentarioServicioImpl implements ComentarioServicio{
     @Override
     public List<Comentario> listaComentarios() {
         return comentarioRepo.findAll();
+    }
+
+    @Override
+    public Comentario obtenerComentario(String id) {
+        return comentarioRepo.getById(id);
     }
 }

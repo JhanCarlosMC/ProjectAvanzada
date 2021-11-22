@@ -46,4 +46,9 @@ public class ChatServicioImpl implements ChatServicio{
     public List<Chat> listaChats() {
         return chatRepo.findAll();
     }
+
+    @Override
+    public Chat obtenerChat(String id) {
+        return chatRepo.getById(id);
+    }
 }

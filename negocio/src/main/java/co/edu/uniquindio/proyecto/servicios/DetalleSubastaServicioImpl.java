@@ -34,7 +34,7 @@ public class DetalleSubastaServicioImpl implements DetalleSubastaServicio{
     }
 
     @Override
-    public void eliminarUsuario(String codigo) throws Exception {
+    public void eliminarDetalleSubasta(String codigo) throws Exception {
         Optional<DetalleSubasta> buscado = detalleSubastaRepo.findById(codigo);
 
         if (buscado.isEmpty()){
@@ -47,5 +47,10 @@ public class DetalleSubastaServicioImpl implements DetalleSubastaServicio{
     @Override
     public List<DetalleSubasta> listaDetallesSubasta() {
         return detalleSubastaRepo.findAll();
+    }
+
+    @Override
+    public DetalleSubasta obtenerDetalleSubasta(String id) {
+        return detalleSubastaRepo.getById(id);
     }
 }

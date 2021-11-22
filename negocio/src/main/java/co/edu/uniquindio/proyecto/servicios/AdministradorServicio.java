@@ -13,4 +13,6 @@ public interface AdministradorServicio {
     void eliminarAdministrador(String codigo) throws Exception;
 
     List<Administrador> listaAdministradores();
+
+    Administrador obtenerAdministrador(String id);
 }

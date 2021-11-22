@@ -13,4 +13,6 @@ public interface ComentarioServicio {
     void eliminarComentario(String codigo) throws Exception;
 
     List<Comentario> listaComentarios();
+
+    Comentario obtenerComentario(String id);
 }

@@ -13,4 +13,6 @@ public interface ChatServicio {
     void eliminarChat(String codigo) throws Exception;
 
     List<Chat> listaChats();
+
+    Chat obtenerChat(String id);
 }

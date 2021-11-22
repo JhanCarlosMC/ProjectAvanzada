@@ -59,4 +59,9 @@ public class AdministradorServicioImpl implements AdministradorServicio{
 
         return administradorRepo.findAll();
     }
+
+    @Override
+    public Administrador obtenerAdministrador(String id) {
+        return administradorRepo.getById(id);
+    }
 }

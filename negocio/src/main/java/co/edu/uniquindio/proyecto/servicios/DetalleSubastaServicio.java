@@ -10,7 +10,9 @@ public interface DetalleSubastaServicio {
 
     DetalleSubasta actualizarDetalleSubasta(DetalleSubasta detalleSubasta) throws Exception;
 
-    void eliminarUsuario(String codigo) throws Exception;
+    void eliminarDetalleSubasta(String codigo) throws Exception;
 
     List<DetalleSubasta> listaDetallesSubasta();
+
+    DetalleSubasta obtenerDetalleSubasta(String id);
 }
