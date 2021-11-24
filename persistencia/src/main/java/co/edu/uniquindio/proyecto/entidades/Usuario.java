@@ -16,6 +16,9 @@ import java.util.Map;
 public class Usuario extends Persona implements Serializable {
 
     //Atributos propios de la entidad
+    @Column(length = 40)
+    private String username;
+
     @ElementCollection
     @Column(nullable = false, name = "num_telefonos")
     private Map<String, String> numTelefonos;

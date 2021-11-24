@@ -26,6 +26,9 @@ public class Producto implements Serializable {
     @Column(length = 40, nullable = false)
     private String nombre;
 
+    @Column(name = "nombre_publicacion", length = 50, nullable = false)
+    private String nombrePublicacion;
+
     @Min(0)
     @Column(nullable = false)
     private int unidades;
