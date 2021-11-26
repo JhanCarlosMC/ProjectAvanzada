@@ -25,18 +25,18 @@ public class UsuarioBean implements Serializable {
     private UsuarioServicio usuarioServicio;
 
     @PostConstruct
-    public void inicializar(){
+    public void inicializar() {
         usuario = new Usuario();
     }
 
-    public void registrarUsuario(){
+    public void registrarUsuario() {
         try {
             usuarioServicio.registrarUsuario(usuario);
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,"Alerta","Registro exitoso");
-            FacesContext.getCurrentInstance().addMessage(null,facesMessage);
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Registro exitoso");
+            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
         } catch (Exception e) {
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Alerta",e.getMessage());
-            FacesContext.getCurrentInstance().addMessage(null,facesMessage);
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
         }
     }
 }

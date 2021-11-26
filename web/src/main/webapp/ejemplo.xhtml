@@ -15,13 +15,13 @@
 <h:body>
     <h:form>
         <h:panelGrid columns="2" cellpadding="5">
-            <p:outputLabel for="attr1" value="Atributo 1: "/>
-            <p:inputText id="attr1" value="#{ejemploBean.att1}" required="true"/>
-
-            <p:outputLabel value="Atributo 2: "/>
-            <p:inputText value="#{ejemploBean.att2}"/>
+            <p:outputLabel for="attr1" value="Atributo 1:" />
+            <p:inputText id="attr1" value="#{ejemploBean.att1}" required="true" />
+            <p:outputLabel for="attr2" value="Atributo 2:" />
+            <p:inputText id="attr2" value="#{ejemploBean.att2}" required="true" />
         </h:panelGrid>
-        <p:commandButton value="Cambiar valores" action="#{ejemploBean.cambiar}" update="@form"/>
+        <p:commandButton action="#{ejemploBean.cambiar}" value="Cambiar valores"
+                         update="@form" />
     </h:form>
 </h:body>
 </html>

@@ -15,4 +15,10 @@ public interface AdministradorServicio {
     List<Administrador> listaAdministradores();
 
     Administrador obtenerAdministrador(String id);
+
+    Administrador login(String email, String password);
+
+    String recuperacionPassword(String emial);
+
+
 }

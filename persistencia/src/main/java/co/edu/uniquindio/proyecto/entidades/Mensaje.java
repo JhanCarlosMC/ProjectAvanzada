@@ -33,7 +33,7 @@ public class Mensaje {
 
     //Relaciones
     @ManyToOne
-    @JoinColumn(nullable = false)
+//    @JoinColumn(nullable = false)
     private Chat chat;
 
     //Constructor

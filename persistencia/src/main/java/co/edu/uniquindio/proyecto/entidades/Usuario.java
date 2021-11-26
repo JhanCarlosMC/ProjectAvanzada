@@ -16,7 +16,7 @@ import java.util.Map;
 public class Usuario extends Persona implements Serializable {
 
     //Atributos propios de la entidad
-    @Column(length = 40)
+    @Column(length = 40, nullable = false)
     private String username;
 
     @ElementCollection
@@ -25,7 +25,7 @@ public class Usuario extends Persona implements Serializable {
 
     //Relaciones
     @ManyToOne
-    @JoinColumn(nullable = false)
+//    @JoinColumn(nullable = false)
     private Ciudad ciudad;
 
     @OneToMany(mappedBy = "usuario")

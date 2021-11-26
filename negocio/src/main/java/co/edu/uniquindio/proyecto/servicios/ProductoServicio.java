@@ -9,13 +9,17 @@ public interface ProductoServicio {
 
     Producto publicarProducto(Producto p) throws Exception;
 
-    void actualizarProducto(Producto p) throws Exception;
+    Producto actualizarProducto(Producto p) throws Exception;
 
     void eliminarProducto(String codigo) throws Exception;
 
-    Producto obtenerProducto(String codigo) throws ProductoNoEncontradoException;
+    Producto obtenerProductoCodigo(String codigo) throws ProductoNoEncontradoException;
+
+    Producto obtenerProductoNombre(String nombre) throws ProductoNoEncontradoException;
 
     List<Producto>listarProductos(Categoria categoria);
+
+    List<Producto>listarProductos();
 
     void comentarProducto(String mensaje, Integer calificacion, Usuario usuario, Producto producto) throws Exception;
 
@@ -28,4 +32,6 @@ public interface ProductoServicio {
     List<Producto>buscarProductos(String nombreProducto, String[] filtros);
 
     List<Producto>listarProductos(String codigoUsuario) throws Exception;
+
+    String recuperarPassword(String email);
 }

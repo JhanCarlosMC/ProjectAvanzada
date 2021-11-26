@@ -64,4 +64,16 @@ public class AdministradorServicioImpl implements AdministradorServicio{
     public Administrador obtenerAdministrador(String id) {
         return administradorRepo.getById(id);
     }
+
+    @Override
+    //Metodo para validar que un administrador este registrado e iniciar sesion en base al email y password
+    public Administrador login(String email, String password) {
+        return null;
+    }
+
+    @Override
+    //Metodo para recuperar password segun un email
+    public String recuperacionPassword(String emial) {
+        return null;
+    }
 }

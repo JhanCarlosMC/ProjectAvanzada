@@ -31,8 +31,13 @@ public class ProductoServicioImpl implements ProductoServicio{
     }
 
     @Override
-    public void actualizarProducto(Producto p) throws Exception {
+    public Producto actualizarProducto(Producto p) throws Exception {
+        Optional<Producto> buscado = productoRepo.findById(p.getCodigo());
 
+        if (buscado.isEmpty()){
+            throw new Exception("EL producto no existe");
+        }
+        return productoRepo.save(p);
     }
 
     @Override
@@ -47,8 +52,13 @@ public class ProductoServicioImpl implements ProductoServicio{
     }
 
     @Override
-    public Producto obtenerProducto(String codigo) throws ProductoNoEncontradoException {
+    public Producto obtenerProductoCodigo(String codigo) throws ProductoNoEncontradoException {
         return productoRepo.findById(codigo).orElseThrow(() -> new ProductoNoEncontradoException("El código del producto no es valido"));
+    }
+
+    @Override
+    public Producto obtenerProductoNombre(String nombre) throws ProductoNoEncontradoException {
+        return null;
     }
 
     @Override
@@ -77,12 +87,22 @@ public class ProductoServicioImpl implements ProductoServicio{
     }
 
     @Override
+    public List<Producto> listarProductos() {
+        return productoRepo.findAll();
+    }
+
+    @Override
     public List<Producto> buscarProductos(String nombreProducto, String[] filtros) {
         return productoRepo.buscarProductoNombre(nombreProducto);
     }
 
     @Override
     public List<Producto> listarProductos(String codigoUsuario) throws Exception {
+        return null;
+    }
+
+    @Override
+    public String recuperarPassword(String email) {
         return null;
     }
 }
