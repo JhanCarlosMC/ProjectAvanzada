@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AdministradorServicioImpl implements AdministradorServicio{
+public class AdministradorServicioImpl implements AdministradorServicio {
 
     private final AdministradorRepo administradorRepo;
 
@@ -16,7 +16,7 @@ public class AdministradorServicioImpl implements AdministradorServicio{
         this.administradorRepo = administradorRepo;
     }
 
-    public boolean isAvaible(String email){
+    public boolean isAvaible(String email) {
         Optional<Administrador> administrador = administradorRepo.findByEmail(email);
         return administrador.isEmpty();
     }
@@ -25,10 +25,10 @@ public class AdministradorServicioImpl implements AdministradorServicio{
     public Administrador registrarAdministrador(Administrador administrador) throws Exception {
         Optional<Administrador> buscado = administradorRepo.findById(administrador.getCodigo());
 
-        if (buscado.isPresent()){
+        if (buscado.isPresent()) {
             throw new Exception("El codigo de administrador ya existe");
         }
-        if(!isAvaible(administrador.getEmail())){
+        if (!isAvaible(administrador.getEmail())) {
             throw new Exception("El Email ya se encuentra en uso");
         }
         return administradorRepo.save(administrador);
@@ -38,7 +38,7 @@ public class AdministradorServicioImpl implements AdministradorServicio{
     public Administrador actualizarAdministrador(Administrador administrador) throws Exception {
         Optional<Administrador> buscado = administradorRepo.findById(administrador.getCodigo());
 
-        if (buscado.isEmpty()){
+        if (buscado.isEmpty()) {
             throw new Exception("El administrador no existe");
         }
         return administradorRepo.save(administrador);
@@ -48,7 +48,7 @@ public class AdministradorServicioImpl implements AdministradorServicio{
     public void eliminarAdministrador(String codigo) throws Exception {
         Optional<Administrador> buscado = administradorRepo.findById(codigo);
 
-        if (buscado.isEmpty()){
+        if (buscado.isEmpty()) {
             throw new Exception("El administrador no existe");
         }
         administradorRepo.deleteById(codigo);
@@ -67,13 +67,26 @@ public class AdministradorServicioImpl implements AdministradorServicio{
 
     @Override
     //Metodo para validar que un administrador este registrado e iniciar sesion en base al email y password
-    public Administrador login(String email, String password) {
+    public Administrador login(String email, String password) throws Exception {
+        Optional<Administrador> buscado = administradorRepo.findByEmail(email);
+
+        if (buscado.isEmpty()){
+            throw new Exception("El email no esta relacionado a ningun administrador");
+        }
+        if(!buscado.get().getPassword().equals(password)){
+            throw new Exception("La contraseña no es correcta");
+        }
         return null;
     }
 
     @Override
     //Metodo para recuperar password segun un email
-    public String recuperacionPassword(String emial) {
-        return null;
+    public String recuperacionPassword(String email) throws Exception {
+        Optional<Administrador> buscado = administradorRepo.findByEmail(email);
+
+        if (buscado.isEmpty()){
+            throw new Exception("El email no esta relacionado a ningun administrador");
+        }
+        return buscado.get().getPassword();
     }
 }

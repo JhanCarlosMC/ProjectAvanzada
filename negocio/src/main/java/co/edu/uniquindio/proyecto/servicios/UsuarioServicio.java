@@ -18,4 +18,5 @@ public interface UsuarioServicio {
 
     Usuario obtenerUsuario(String codigo) throws Exception;
 
+    String recuperarPassword(String email) throws Exception;
 }

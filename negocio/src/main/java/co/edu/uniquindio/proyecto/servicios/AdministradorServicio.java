@@ -16,9 +16,9 @@ public interface AdministradorServicio {
 
     Administrador obtenerAdministrador(String id);
 
-    Administrador login(String email, String password);
+    Administrador login(String email, String password) throws Exception;
 
-    String recuperacionPassword(String emial);
+    String recuperacionPassword(String emial) throws Exception;
 
 
 }

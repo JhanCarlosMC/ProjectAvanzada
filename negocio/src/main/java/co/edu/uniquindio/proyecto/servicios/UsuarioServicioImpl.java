@@ -74,4 +74,14 @@ public class UsuarioServicioImpl implements UsuarioServicio{
     public Usuario obtenerUsuario(String codigo) throws Exception {
         return usuarioRepo.findByCodigo(codigo).orElseThrow(() -> new Exception("El usuario no Existe"));
     }
+
+    @Override
+    public String recuperarPassword(String email) throws Exception {
+        Optional<Usuario> buscado = usuarioRepo.findByEmail(email);
+
+        if (buscado.isEmpty()){
+            throw new Exception("El email no esta relacionado con ningun usuario");
+        }
+        return buscado.get().getPassword();
+    }
 }
