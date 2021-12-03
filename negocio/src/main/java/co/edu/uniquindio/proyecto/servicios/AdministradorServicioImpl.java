@@ -56,7 +56,6 @@ public class AdministradorServicioImpl implements AdministradorServicio {
 
     @Override
     public List<Administrador> listaAdministradores() {
-
         return administradorRepo.findAll();
     }
 
@@ -68,15 +67,8 @@ public class AdministradorServicioImpl implements AdministradorServicio {
     @Override
     //Metodo para validar que un administrador este registrado e iniciar sesion en base al email y password
     public Administrador login(String email, String password) throws Exception {
-        Optional<Administrador> buscado = administradorRepo.findByEmail(email);
+        return administradorRepo.findByEmailAndPassword(email,password).orElseThrow(() -> new Exception("Los datos de autenticacion no son correctos"));
 
-        if (buscado.isEmpty()){
-            throw new Exception("El email no esta relacionado a ningun administrador");
-        }
-        if(!buscado.get().getPassword().equals(password)){
-            throw new Exception("La contraseña no es correcta");
-        }
-        return null;
     }
 
     @Override

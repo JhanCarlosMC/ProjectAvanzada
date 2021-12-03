@@ -25,7 +25,11 @@ public class UsuarioServicioImpl implements UsuarioServicio{
 
     @Override
     public Usuario actualizarUsuario(Usuario u) throws Exception {
-        return buscarUsuario(u);
+        Optional<Usuario> buscado = usuarioRepo.findById(u.getCodigo());
+        if(buscado.isEmpty()){
+            throw new Exception("El  usuario No existe");
+        }
+        return usuarioRepo.save(u);
     }
 
     private Usuario buscarUsuario(Usuario u) throws Exception {
@@ -39,7 +43,7 @@ public class UsuarioServicioImpl implements UsuarioServicio{
             throw new Exception("El email del usuario ya existe");
         }
 
-//        buscado = usuarioRepo.findByEmail(u.getUsername());
+        buscado = usuarioRepo.findByUsername(u.getUsername());
         if(buscado.isPresent()){
             throw new Exception("El username ya existe");
         }
@@ -67,7 +71,7 @@ public class UsuarioServicioImpl implements UsuarioServicio{
 
     @Override
     public Usuario login(String email, String password) throws Exception {
-        return usuarioRepo.findByEmailAndPassword(email,password).orElseThrow(() -> new Exception(""));
+        return usuarioRepo.findByEmailAndPassword(email,password).orElseThrow(() -> new Exception("Los datos de autenticacion no son correctos"));
     }
 
     @Override

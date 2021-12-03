@@ -20,8 +20,8 @@ public class Producto implements Serializable {
     //Atributos propios de la entidad
     @Id
     @EqualsAndHashCode.Include
-    @Column(length = 40)
-    private String codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer codigo;
 
     @Column(length = 40, nullable = false)
     private String nombre;
@@ -79,14 +79,17 @@ public class Producto implements Serializable {
     @ToString.Exclude
     private List<Chat> chat;
 
+    @ManyToMany(mappedBy = "productosFavoritos")
+    @ToString.Exclude
+    private List<Usuario> favoritos;
+
     @ManyToMany
     @ToString.Exclude
     private List<Usuario> usuarios;
 
     //Constructor
     @Builder
-    public Producto(String codigo, String nombre, int unidades, String descripcion, int precio, int descuento, LocalDate fechaLimite) {
-        this.codigo = codigo;
+    public Producto( String nombre, int unidades, String descripcion, int precio, int descuento, LocalDate fechaLimite) {
         this.nombre = nombre;
         this.unidades = unidades;
         this.descripcion = descripcion;

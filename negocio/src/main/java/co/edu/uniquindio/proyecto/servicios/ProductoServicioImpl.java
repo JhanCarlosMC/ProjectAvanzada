@@ -1,14 +1,15 @@
 package co.edu.uniquindio.proyecto.servicios;
 
+import co.edu.uniquindio.proyecto.dto.ProdCarrito;
 import co.edu.uniquindio.proyecto.entidades.Categoria;
 import co.edu.uniquindio.proyecto.entidades.Compra;
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.excepciones.ProductoNoEncontradoException;
 import co.edu.uniquindio.proyecto.repositorios.ProductoRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +33,7 @@ public class ProductoServicioImpl implements ProductoServicio{
 
     @Override
     public Producto actualizarProducto(Producto p) throws Exception {
-        Optional<Producto> buscado = productoRepo.findById(p.getCodigo());
+        Optional<Producto> buscado = productoRepo.findByCodigo(p.getCodigo());
 
         if (buscado.isEmpty()){
             throw new Exception("EL producto no existe");
@@ -57,8 +58,8 @@ public class ProductoServicioImpl implements ProductoServicio{
     }
 
     @Override
-    public Producto obtenerProductoNombre(String nombre) throws ProductoNoEncontradoException {
-        return null;
+    public List<Producto> obtenerProductoNombre(String nombre) throws ProductoNoEncontradoException {
+        return productoRepo.buscarProductoNombre(nombre);
     }
 
     @Override
@@ -82,8 +83,8 @@ public class ProductoServicioImpl implements ProductoServicio{
     }
 
     @Override
-    public List<Producto> listarProductos(Categoria categoria) {
-        return null;
+    public List<Producto> listarProductosCategoria(Categoria categoria) {
+        return productoRepo.listaProductosCategoria(categoria);
     }
 
     @Override
@@ -103,6 +104,11 @@ public class ProductoServicioImpl implements ProductoServicio{
 
     @Override
     public String recuperarPassword(String email) {
+        return null;
+    }
+
+    @Override
+    public Compra comprarProductos(Usuario usuario, ArrayList<ProdCarrito> productos, String medioPago) throws Exception {
         return null;
     }
 }

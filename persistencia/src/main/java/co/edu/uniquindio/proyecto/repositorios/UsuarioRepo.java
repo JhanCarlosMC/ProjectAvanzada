@@ -40,10 +40,11 @@ public interface UsuarioRepo extends JpaRepository<Usuario, String> {
 
     @Query("select new co.edu.uniquindio.proyecto.dto.UsuarioYProducto(u.email, u.nombre, p) from Usuario u left join u.productoUsuarios p")
     List<UsuarioYProducto>listarUsuariosYProductos(); //el object[] se utiliza cuando trae información de diferentes tablas
+
     @Query("select distinct p.nombre, c from Producto p left join p.comentarios c where p.codigo = :id")
     List<Usuario>listarUsariosComentarios(String id);
 
     Optional<Usuario>findByCodigo(String codigo);
 
-    //Optional<Usuario>findByUsername(String username);
+    Optional<Usuario> findByUsername(String username);
 }
