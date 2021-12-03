@@ -21,7 +21,7 @@ public class ProductoServicioTest {
 
     @Test
     public void ingresarProductoTest(){
-        Producto newProducto = new Producto("4", "Play Station 6", 5, "Es la mas nueva", 10000, 0, LocalDate.of(2021, 10, 20));
+        Producto newProducto = new Producto("Play Station 6", 5, "Es la mas nueva", 10000, 0, LocalDate.of(2021, 10, 20));
 
         try {
             Producto respuesta = productoServicio.publicarProducto(newProducto);
@@ -33,10 +33,10 @@ public class ProductoServicioTest {
 
     @Test
     public void actualizarProductoTest() throws Exception {
-        Producto newProducto = new Producto("4", "Play Station 6", 5, "Es la mas nueva", 10000, 0, LocalDate.of(2021, 10, 20));
+        Producto newProducto = new Producto("Play Station 6", 5, "Es la mas nueva", 10000, 0, LocalDate.of(2021, 10, 20));
         productoServicio.publicarProducto(newProducto);
 
-        Producto updateProducto = productoServicio.obtenerProductoCodigo("4");
+        Producto updateProducto = productoServicio.obtenerProductoCodigo(1);
         updateProducto.setDescuento(13);
 
         Producto modificado = productoServicio.actualizarProducto(updateProducto);
@@ -45,10 +45,10 @@ public class ProductoServicioTest {
 
     @Test
     public void eliminarProductoTest() throws Exception {
-        Producto newProducto = new Producto("4", "Play Station 6", 5, "Es la mas nueva", 10000, 0, LocalDate.of(2021, 10, 20));
+        Producto newProducto = new Producto("Play Station 6", 5, "Es la mas nueva", 10000, 0, LocalDate.of(2021, 10, 20));
         productoServicio.publicarProducto(newProducto);
 
-        productoServicio.eliminarProducto("4");
+        productoServicio.eliminarProducto("1");
         Assertions.assertTrue(true);
     }
 

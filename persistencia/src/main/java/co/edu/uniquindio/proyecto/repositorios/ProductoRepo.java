@@ -13,8 +13,8 @@ import java.util.Optional;
 
 @Repository
 public interface ProductoRepo extends JpaRepository<Producto, String>{
-    @Query("select p from Producto p where p.usuario.codigo = :codigo")
-    List<Producto>listaProductos(int codigo);
+    @Query("select p from Producto p where p.vendedor.codigo = :codigo")
+    List<Producto>listaProductosUsuario(String codigo);
 
     @Query("select u, p from Usuario u left join u.productoUsuarios p")
     List<Producto> listaProductosUsuarios();
@@ -25,7 +25,7 @@ public interface ProductoRepo extends JpaRepository<Producto, String>{
     @Query("select c, max(dc.producto) from Compra c join c.detalleCompras dc join dc.producto p join p.categorias where c.codigo = :categoria")
     Optional<Producto> productoMasVendido(String categoria);
 
-    @Query("select p.usuario.nombre from Producto p where p.codigo = :codigo")
+    @Query("select p.vendedor.nombre from Producto p where p.codigo = :codigo")
     String obtenerNombreVendedor(String codigo);
 
     //@Query("select c from Producto p join p.comentarios c where p.codigo = :id")

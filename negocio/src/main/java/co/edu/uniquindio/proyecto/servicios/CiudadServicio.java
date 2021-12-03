@@ -12,7 +12,7 @@ public interface CiudadServicio {
 
     void eliminarCiudad(int codigo) throws Exception;
 
-    List<Ciudad> listaCiudades();
+    List<Ciudad> listarCiudades();
 
-    Ciudad obtenerCiudad(int id);
+    Ciudad obtenerCiudad(Integer id) throws Exception;
 }

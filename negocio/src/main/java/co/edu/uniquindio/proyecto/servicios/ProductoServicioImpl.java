@@ -1,14 +1,13 @@
 package co.edu.uniquindio.proyecto.servicios;
 
 import co.edu.uniquindio.proyecto.dto.ProdCarrito;
-import co.edu.uniquindio.proyecto.entidades.Categoria;
-import co.edu.uniquindio.proyecto.entidades.Compra;
-import co.edu.uniquindio.proyecto.entidades.Producto;
-import co.edu.uniquindio.proyecto.entidades.Usuario;
+import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.excepciones.ProductoNoEncontradoException;
+import co.edu.uniquindio.proyecto.repositorios.ComentarioRepo;
 import co.edu.uniquindio.proyecto.repositorios.ProductoRepo;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -17,9 +16,11 @@ import java.util.Optional;
 public class ProductoServicioImpl implements ProductoServicio{
 
     private final ProductoRepo productoRepo;
+    private final ComentarioRepo comentarioRepo;
 
-    public ProductoServicioImpl(ProductoRepo productoRepo){
+    public ProductoServicioImpl(ProductoRepo productoRepo, ComentarioRepo comentarioRepo){
         this.productoRepo = productoRepo;
+        this.comentarioRepo = comentarioRepo;
     }
 
     @Override
@@ -53,8 +54,8 @@ public class ProductoServicioImpl implements ProductoServicio{
     }
 
     @Override
-    public Producto obtenerProductoCodigo(String codigo) throws ProductoNoEncontradoException {
-        return productoRepo.findById(codigo).orElseThrow(() -> new ProductoNoEncontradoException("El código del producto no es valido"));
+    public Producto obtenerProductoCodigo(Integer codigo) throws ProductoNoEncontradoException {
+        return productoRepo.findByCodigo(codigo).orElseThrow(() -> new ProductoNoEncontradoException("El código del producto no es valido"));
     }
 
     @Override
@@ -64,21 +65,6 @@ public class ProductoServicioImpl implements ProductoServicio{
 
     @Override
     public void comprarProductos(Compra compra) throws Exception {
-
-    }
-
-    @Override
-    public void eliminarProductoFavorito(Producto producto, Usuario usuario) throws Exception {
-
-    }
-
-    @Override
-    public void guardarProductoFavoritos(Producto producto, Usuario usuario) throws Exception {
-
-    }
-
-    @Override
-    public void comentarProducto(String mensaje, Integer calificacion, Usuario usuario, Producto producto) throws Exception {
 
     }
 
@@ -99,7 +85,7 @@ public class ProductoServicioImpl implements ProductoServicio{
 
     @Override
     public List<Producto> listarProductos(String codigoUsuario) throws Exception {
-        return null;
+        return productoRepo.listaProductosUsuario(codigoUsuario);
     }
 
     @Override
@@ -108,7 +94,18 @@ public class ProductoServicioImpl implements ProductoServicio{
     }
 
     @Override
-    public Compra comprarProductos(Usuario usuario, ArrayList<ProdCarrito> productos, String medioPago) throws Exception {
-        return null;
+    public void comentarProducto(Comentario comentario) throws Exception {
+        comentario.setFechaComentario(LocalDate.now());
+        comentarioRepo.save(comentario);
+    }
+
+    @Override
+    public void guardarProductoFavoritos(Producto producto, Usuario usuario) throws Exception {
+
+    }
+
+    @Override
+    public void eliminarProductoFavorito(Producto producto, Usuario usuario) throws Exception {
+
     }
 }

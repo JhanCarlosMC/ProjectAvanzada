@@ -15,19 +15,13 @@ public interface ProductoServicio {
 
     void eliminarProducto(String codigo) throws Exception;
 
-    Producto obtenerProductoCodigo(String codigo) throws ProductoNoEncontradoException;
+    Producto obtenerProductoCodigo(Integer codigo) throws ProductoNoEncontradoException;
 
     List<Producto> obtenerProductoNombre(String nombre) throws ProductoNoEncontradoException;
 
     List<Producto>listarProductosCategoria(Categoria categoria);
 
     List<Producto>listarProductos();
-
-    void comentarProducto(String mensaje, Integer calificacion, Usuario usuario, Producto producto) throws Exception;
-
-    void guardarProductoFavoritos(Producto producto, Usuario usuario) throws Exception;
-
-    void eliminarProductoFavorito(Producto producto, Usuario usuario) throws Exception;
 
     void comprarProductos(Compra compra) throws Exception;
 
@@ -37,6 +31,10 @@ public interface ProductoServicio {
 
     String recuperarPassword(String email);
 
-    Compra comprarProductos(Usuario usuario, ArrayList<ProdCarrito> productos, String medioPago) throws Exception;
+    void comentarProducto(Comentario comentario) throws Exception;
+
+    void guardarProductoFavoritos(Producto producto, Usuario usuario) throws Exception;
+
+    void eliminarProductoFavorito(Producto producto, Usuario usuario) throws Exception;
 
 }

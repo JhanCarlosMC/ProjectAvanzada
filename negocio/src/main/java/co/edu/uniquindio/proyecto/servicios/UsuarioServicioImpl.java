@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.servicios;
 
+import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UsuarioServicioImpl implements UsuarioServicio{
+public class UsuarioServicioImpl implements UsuarioServicio {
 
     private final UsuarioRepo usuarioRepo;
 
-    public UsuarioServicioImpl(UsuarioRepo usuarioRepo){
+    public UsuarioServicioImpl(UsuarioRepo usuarioRepo) {
         this.usuarioRepo = usuarioRepo;
     }
 
@@ -26,7 +27,7 @@ public class UsuarioServicioImpl implements UsuarioServicio{
     @Override
     public Usuario actualizarUsuario(Usuario u) throws Exception {
         Optional<Usuario> buscado = usuarioRepo.findById(u.getCodigo());
-        if(buscado.isEmpty()){
+        if (buscado.isEmpty()) {
             throw new Exception("El  usuario No existe");
         }
         return usuarioRepo.save(u);
@@ -34,31 +35,31 @@ public class UsuarioServicioImpl implements UsuarioServicio{
 
     private Usuario buscarUsuario(Usuario u) throws Exception {
         Optional<Usuario> buscado = usuarioRepo.findById(u.getCodigo());
-        if(buscado.isPresent()){
+        if (buscado.isPresent()) {
             throw new Exception("El email del usuario ya existe");
         }
 
         buscado = buscarPorEmail(u.getEmail());
-        if(buscado.isPresent()){
+        if (buscado.isPresent()) {
             throw new Exception("El email del usuario ya existe");
         }
 
         buscado = usuarioRepo.findByUsername(u.getUsername());
-        if(buscado.isPresent()){
+        if (buscado.isPresent()) {
             throw new Exception("El username ya existe");
         }
 
         return usuarioRepo.save(u);
     }
 
-    private Optional<Usuario>buscarPorEmail(String email){
+    private Optional<Usuario> buscarPorEmail(String email) {
         return usuarioRepo.findByEmail(email);
     }
 
     @Override
     public void eliminarUsuario(String codigo) throws Exception {
         Optional<Usuario> buscado = usuarioRepo.findById(codigo);
-        if(buscado.isEmpty()){
+        if (buscado.isEmpty()) {
             throw new Exception("El email del usuario no existe");
         }
         usuarioRepo.deleteById(codigo);
@@ -71,7 +72,7 @@ public class UsuarioServicioImpl implements UsuarioServicio{
 
     @Override
     public Usuario login(String email, String password) throws Exception {
-        return usuarioRepo.findByEmailAndPassword(email,password).orElseThrow(() -> new Exception("Los datos de autenticacion no son correctos"));
+        return usuarioRepo.findByEmailAndPassword(email, password).orElseThrow(() -> new Exception("Los datos de autenticacion no son correctos"));
     }
 
     @Override
@@ -83,9 +84,19 @@ public class UsuarioServicioImpl implements UsuarioServicio{
     public String recuperarPassword(String email) throws Exception {
         Optional<Usuario> buscado = usuarioRepo.findByEmail(email);
 
-        if (buscado.isEmpty()){
+        if (buscado.isEmpty()) {
             throw new Exception("El email no esta relacionado con ningun usuario");
         }
         return buscado.get().getPassword();
+    }
+
+    @Override
+    public void guardarProductoFavoritos(Producto producto, Usuario usuario) throws Exception {
+
+    }
+
+    @Override
+    public void eliminarProductoFavorito(Producto producto, Usuario usuario) throws Exception {
+
     }
 }

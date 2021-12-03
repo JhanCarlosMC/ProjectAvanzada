@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
@@ -34,6 +35,8 @@ public class Producto implements Serializable {
     private int unidades;
 
     @Column(length = 255, nullable = false)
+    @NotBlank//solo funciona para string
+    @Lob
     private String descripcion;
 
     @Min(0)
@@ -47,13 +50,13 @@ public class Producto implements Serializable {
     private LocalDate fechaLimite;
 
     @ElementCollection
-    @Column(nullable = false)
-    private Map<String, String> imagenes;
+    @Column(nullable = true)
+    private List<String> imagenes;
 
     //Relaciones
     @ManyToOne
 //    @JoinColumn(nullable = false)
-    private Usuario usuario;
+    private Usuario vendedor;
 
     @ManyToOne
 //    @JoinColumn(nullable = false)

@@ -24,7 +24,7 @@ public class ChatServicioTest {
     @Test
     public void ingresarChatTest() {
         Producto producto = Producto.builder()
-                .codigo("1").nombre("mouse gamer").unidades(5)
+                .nombre("mouse gamer").unidades(5)
                 .descripcion("mouse para juegos").precio(15000)
                 .descuento(5)
                 .fechaLimite(LocalDate.of(2021,10,20)).build();
@@ -44,7 +44,7 @@ public class ChatServicioTest {
     @Test
     public void actualizarChatTest() throws Exception {
         Producto producto = Producto.builder()
-                .codigo("1").nombre("mouse gamer").unidades(5)
+                .nombre("mouse gamer").unidades(5)
                 .descripcion("mouse para juegos").precio(15000)
                 .descuento(5)
                 .fechaLimite(LocalDate.of(2021,10,20)).build();
@@ -64,7 +64,7 @@ public class ChatServicioTest {
     @Test
     public void eliminarChatTest() throws Exception {
         Producto producto = Producto.builder()
-                .codigo("1").nombre("mouse gamer").unidades(5)
+                .nombre("mouse gamer").unidades(5)
                 .descripcion("mouse para juegos").precio(15000)
                 .descuento(5)
                 .fechaLimite(LocalDate.of(2021,10,20)).build();
@@ -81,7 +81,7 @@ public class ChatServicioTest {
     @Test
     public void listaChatsTest() throws Exception {
         Producto producto = Producto.builder()
-                .codigo("1").nombre("mouse gamer").unidades(5)
+                .nombre("mouse gamer").unidades(5)
                 .descripcion("mouse para juegos").precio(15000)
                 .descuento(5)
                 .fechaLimite(LocalDate.of(2021,10,20)).build();

@@ -10,9 +10,9 @@ public interface ComentarioServicio {
 
     Comentario actualzarComentario(Comentario comentario) throws Exception;
 
-    void eliminarComentario(String codigo) throws Exception;
+    void eliminarComentario(Integer codigo) throws Exception;
 
     List<Comentario> listaComentarios();
 
-    Comentario obtenerComentario(String id);
+    Comentario obtenerComentario(Integer id);
 }

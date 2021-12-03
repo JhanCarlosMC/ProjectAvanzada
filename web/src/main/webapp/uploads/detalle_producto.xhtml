@@ -10,18 +10,12 @@
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Ejemplo</title>
+    <h:outputStylesheet library="css" name="bootstrap.min.css" />
+    <h:outputStylesheet library="css" name="styles.css" />
+    <h:outputScript library="js" name="bootstrap.bundle.min.js"/>
+    <title>Detalle del producto</title>
 </h:head>
 <h:body>
-    <h:form>
-        <h:panelGrid columns="2" cellpadding="5">
-            <p:outputLabel for="attr1" value="Atributo 1:" />
-            <p:inputText id="attr1" value="#{ejemploBean.att1}" required="true" />
-            <p:outputLabel for="attr2" value="Atributo 2:" />
-            <p:inputText id="attr2" value="#{ejemploBean.att2}" required="true" />
-        </h:panelGrid>
-        <p:commandButton action="#{ejemploBean.cambiar}" value="Cambiar valores"
-                         update="@form" />
-    </h:form>
+
 </h:body>
 </html>

@@ -33,7 +33,7 @@ public class ComentarioServicioImpl implements ComentarioServicio {
     }
 
     @Override
-    public void eliminarComentario(String codigo) throws Exception {
+    public void eliminarComentario(Integer codigo) throws Exception {
         Optional<Comentario> buscado = comentarioRepo.findById(codigo);
 
         if (buscado.isEmpty()) {
@@ -49,7 +49,7 @@ public class ComentarioServicioImpl implements ComentarioServicio {
     }
 
     @Override
-    public Comentario obtenerComentario(String id) {
+    public Comentario obtenerComentario(Integer id) {
         return comentarioRepo.getById(id);
     }
 }

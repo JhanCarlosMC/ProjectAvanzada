@@ -18,8 +18,8 @@ public class Comentario implements Serializable {
     //Atributos propios de la entidad
     @Id
     @EqualsAndHashCode.Include
-    @Column(length = 40)
-    private String codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer codigo;
 
     @Column(length = 255, nullable = false)
     private String mensaje;
@@ -44,7 +44,7 @@ public class Comentario implements Serializable {
     private Producto producto;
 
     //Constructor Completo
-    public Comentario(String codigo, String mensaje, String respuesta, LocalDate fechaComentario, int calificacion)
+    public Comentario(Integer codigo, String mensaje, String respuesta, LocalDate fechaComentario, int calificacion)
     {
         this.codigo = codigo;
         this.mensaje = mensaje;
@@ -53,4 +53,11 @@ public class Comentario implements Serializable {
         this.calificacion = calificacion;
     }
 
+    public Comentario(String mensaje, String respuesta, LocalDate fechaComentario, int calificacion)
+    {
+        this.mensaje = mensaje;
+        this.respuesta = respuesta;
+        this.fechaComentario = fechaComentario;
+        this.calificacion = calificacion;
+    }
 }

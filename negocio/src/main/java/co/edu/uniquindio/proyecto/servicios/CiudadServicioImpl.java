@@ -44,12 +44,12 @@ public class CiudadServicioImpl implements CiudadServicio {
     }
 
     @Override
-    public List<Ciudad> listaCiudades() {
+    public List<Ciudad> listarCiudades() {
         return ciudadRepo.findAll();
     }
 
     @Override
-    public Ciudad obtenerCiudad(int id) {
-        return ciudadRepo.getById(id);
+    public Ciudad obtenerCiudad(Integer id) throws Exception {
+        return ciudadRepo.findById(id).orElseThrow(() -> new Exception("El id no corresponde a ninguna ciudad"));
     }
 }
