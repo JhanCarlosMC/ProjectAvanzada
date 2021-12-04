@@ -1,12 +1,15 @@
 package co.edu.uniquindio.proyecto.bean;
 
 import co.edu.uniquindio.proyecto.entidades.Ciudad;
+import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.servicios.CiudadServicio;
+import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -28,12 +31,24 @@ public class UsuarioBean implements Serializable {
     @Setter
     private List<Ciudad>ciudades;
 
+    @Value("#{seguridadBean.usuarioSesion}")
+    private Usuario usuarioSesion;
+
+    @Getter @Setter
+    private List<Producto> productos;
+
+    @Getter @Setter
+    private List<Producto> productosComprados;
+
     private final UsuarioServicio usuarioServicio;
 
     private final CiudadServicio ciudadServicio;
 
-    public UsuarioBean(UsuarioServicio usuarioServicio, CiudadServicio ciudadServicio) {
+    private final ProductoServicio productoServicio;
+
+    public UsuarioBean(UsuarioServicio usuarioServicio, ProductoServicio productoServicio, CiudadServicio ciudadServicio) {
         this.usuarioServicio = usuarioServicio;
+        this.productoServicio = productoServicio;
         this.ciudadServicio = ciudadServicio;
     }
 
@@ -41,6 +56,13 @@ public class UsuarioBean implements Serializable {
     public void inicializar(){
         usuario = new Usuario();
         ciudades = ciudadServicio.listarCiudades();
+
+        try {
+            this.productos=productoServicio.listarProductos(usuarioSesion.getCodigo());
+            this.productosComprados=productoServicio.listarProductos(usuarioSesion.getCodigo());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void registrarUsuario(){
