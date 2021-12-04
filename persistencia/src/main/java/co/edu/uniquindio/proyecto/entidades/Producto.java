@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
@@ -31,8 +33,11 @@ public class Producto implements Serializable {
 
     @Min(0)
     @Column(nullable = false)
-    private int unidades;
+    @PositiveOrZero
+    private Integer unidades;
 
+    @Lob
+    @NotBlank//solo funciona para string
     @Column(length = 255, nullable = false)
     private String descripcion;
 
@@ -47,16 +52,16 @@ public class Producto implements Serializable {
     private LocalDate fechaLimite;
 
     @ElementCollection
-    @Column(nullable = false)
-    private Map<String, String> imagenes;
+    @Column(nullable = true)
+    private List<String> imagenes;
 
     //Relaciones
     @ManyToOne
-//    @JoinColumn(nullable = false)
-    private Usuario usuario;
+    @JoinColumn(nullable = false)
+    private Usuario usuario; //cambiar este por vendedor
 
     @ManyToOne
-//    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = true)
     private Ciudad ciudad;
 
     @OneToMany(mappedBy = "producto")
@@ -79,17 +84,13 @@ public class Producto implements Serializable {
     @ToString.Exclude
     private List<Chat> chat;
 
-    @ManyToMany(mappedBy = "productosFavoritos")
-    @ToString.Exclude
-    private List<Usuario> favoritos;
-
     @ManyToMany
     @ToString.Exclude
     private List<Usuario> usuarios;
 
     //Constructor
     @Builder
-    public Producto( String nombre, int unidades, String descripcion, int precio, int descuento, LocalDate fechaLimite) {
+    public Producto(String nombre, int unidades, String descripcion, int precio, int descuento, LocalDate fechaLimite) {
         this.nombre = nombre;
         this.unidades = unidades;
         this.descripcion = descripcion;
@@ -97,5 +98,14 @@ public class Producto implements Serializable {
         this.descuento = descuento;
         this.fechaLimite = fechaLimite;
     }
+
+    public String getImagenPrincipal(){
+        if (imagenes != null && !imagenes.isEmpty()){
+            return imagenes.get(0);
+        }
+        return "default.png";
+    }
+
+
 }
 

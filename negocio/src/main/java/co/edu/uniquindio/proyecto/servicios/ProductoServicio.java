@@ -1,29 +1,30 @@
 package co.edu.uniquindio.proyecto.servicios;
 
-import co.edu.uniquindio.proyecto.dto.ProdCarrito;
+import co.edu.uniquindio.proyecto.dto.ProductoCarrito;
 import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.excepciones.ProductoNoEncontradoException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductoServicio {
 
     Producto publicarProducto(Producto p) throws Exception;
 
-    Producto actualizarProducto(Producto p) throws Exception;
+    void actualizarProducto(Producto p) throws Exception;
 
-    void eliminarProducto(String codigo) throws Exception;
+    void eliminarProducto(Integer codigo) throws Exception;
 
-    Producto obtenerProductoCodigo(String codigo) throws ProductoNoEncontradoException;
+    Producto obtenerProducto(Integer codigo) throws ProductoNoEncontradoException;
 
-    List<Producto> obtenerProductoNombre(String nombre) throws ProductoNoEncontradoException;
+    List<Producto>listarProductos(Categoria categoria);
 
-    List<Producto>listarProductosCategoria(Categoria categoria);
+    List<Producto>listarTodosProductos();
 
-    List<Producto>listarProductos();
+    List<Producto>listarPorCategoria(Categoria categoria);
 
-    void comentarProducto(String mensaje, Integer calificacion, Usuario usuario, Producto producto) throws Exception;
+    void comentarProducto(Comentario comentario) throws Exception;
 
     void guardarProductoFavoritos(Producto producto, Usuario usuario) throws Exception;
 
@@ -35,8 +36,9 @@ public interface ProductoServicio {
 
     List<Producto>listarProductos(String codigoUsuario) throws Exception;
 
-    String recuperarPassword(String email);
+    List<CategoriaEnum>listarCategorias();
 
-    Compra comprarProductos(Usuario usuario, ArrayList<ProdCarrito> productos, String medioPago) throws Exception;
+    CategoriaEnum obtenerCategoria(String categoria) throws Exception;
 
+    Compra comprarProductos(Usuario usuario, ArrayList<ProductoCarrito>producto, MedioPago medioPago) throws Exception;
 }

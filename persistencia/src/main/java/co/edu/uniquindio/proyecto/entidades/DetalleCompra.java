@@ -17,8 +17,8 @@ public class DetalleCompra implements Serializable {
     //Atributos propios de la entidad
     @Id
     @EqualsAndHashCode.Include
-    @Column(length = 40)
-    private String codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer codigo;
 
     @Min(0)
     @Column(nullable = false)
@@ -38,7 +38,7 @@ public class DetalleCompra implements Serializable {
     private Producto producto;
 
     //Constructor
-    public DetalleCompra(String codigo, int unidades, int precioProducto) {
+    public DetalleCompra(Integer codigo, int unidades, int precioProducto) {
         this.codigo = codigo;
         this.unidades = unidades;
         this.precioProducto = precioProducto;

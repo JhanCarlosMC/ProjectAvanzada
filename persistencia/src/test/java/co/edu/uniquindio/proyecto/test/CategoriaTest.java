@@ -11,16 +11,15 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class CategoriaTest {
-
     @Autowired
     private CategoriaRepo categoriaRepo;
 
-    //Test para registrar una categoria
     @Test
     public void registrarCategoriaTest(){
         Categoria categoria = new Categoria("123","muebles");
@@ -28,7 +27,6 @@ public class CategoriaTest {
         Assertions.assertNotNull(categoriaGuardado);
     }
 
-    //Test para eliminar una categoria
     @Test
     public void eliminarCategoriaTest(){
         Categoria categoria = new Categoria("123","muebles");
@@ -39,7 +37,6 @@ public class CategoriaTest {
         Assertions.assertNull(categoriaBuscado);
     }
 
-    //Test para actualizar una categoria
     @Test
     public void actualizarCategoriaTest(){
         Categoria categoria = new Categoria("123","muebles");
@@ -52,11 +49,24 @@ public class CategoriaTest {
         Assertions.assertEquals("electrodomesticos", categoriaBuscado.getNombre());
     }
 
-    //Test para listar las categorias
     @Test
     @Sql("classpath:dataSet.sql")
     public void listarCategoriasTest(){
         List<Categoria>categorias = categoriaRepo.findAll();
         categorias.forEach(c -> System.out.println(c));
+    }
+
+    @Test
+    @Sql("classpath:dataSet.sql")
+    public void listarCatePorCalif(){
+        List<Object>categorias = categoriaRepo.listaCatePorCalif();
+        categorias.forEach(c -> System.out.println(c));
+    }
+
+    @Test
+    @Sql("classpath:dataSet.sql")
+    public void listaSubastaCat(){
+        List<Object>listaSubastaCat = categoriaRepo.subastaCat("electodomestico", LocalDate.of(2021, 10, 20));
+        listaSubastaCat.forEach(c -> System.out.println(c));
     }
 }

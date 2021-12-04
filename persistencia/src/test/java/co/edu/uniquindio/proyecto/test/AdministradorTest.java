@@ -17,9 +17,8 @@ public class AdministradorTest {
     @Autowired
     private AdministradorRepo administradorRepo;
 
-    //Test para registrar un administrador
     @Test
-    public void registrarAdministradorTest() {
+    public void registrarAdministradorTest(){
         Administrador administrador = Administrador.builder()
                 .codigo("123").nombre("juan").email("juan@mail.com")
                 .password("123").build();
@@ -27,9 +26,8 @@ public class AdministradorTest {
         Assertions.assertNotNull(administradorGuardado);
     }
 
-    //Test para eliminar  un administrador
     @Test
-    public void eliminarAdministradorTest() {
+    public void eliminarAdministradorTest(){
         Administrador administrador = Administrador.builder()
                 .codigo("123").nombre("juan").email("juan@mail.com")
                 .password("123").build();
@@ -40,9 +38,8 @@ public class AdministradorTest {
         Assertions.assertNull(administradorBuscado);
     }
 
-    //Test para actualizar un administrador
     @Test
-    public void actualizarAdministradorTest() {
+    public void actualizarAdministradorTest(){
         Administrador administrador = Administrador.builder()
                 .codigo("123").nombre("juan").email("juan@mail.com")
                 .password("123").build();
@@ -54,12 +51,11 @@ public class AdministradorTest {
         Assertions.assertEquals("juan camilo", administradorBuscado.getNombre());
     }
 
-    //Test para listar administradores
     @Test
     @Sql("classpath:dataSet.sql")
-    public void listarAdministradoresTest() {
-
-        List<Administrador> administradores = administradorRepo.findAll();
+    public void listarAdministradoresTest(){
+        
+        List<Administrador>administradores = administradorRepo.findAll();
         administradores.forEach(a -> System.out.println(a));
     }
 }

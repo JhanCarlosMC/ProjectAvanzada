@@ -16,16 +16,16 @@ import java.util.Map;
 public class Usuario extends Persona implements Serializable {
 
     //Atributos propios de la entidad
-    @Column(length = 40, nullable = false)
-    private String username;
-
-    @ElementCollection
-    @Column(nullable = false, name = "num_telefonos")
-    private Map<String, String> numTelefonos;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Column(nullable = false)
+    private List<String>telefonos;
 
     //Relaciones
+    @Column(length = 40)
+    private String username;
+
     @ManyToOne
-//    @JoinColumn(nullable = false)
+    //@JoinColumn(nullable = false)
     private Ciudad ciudad;
 
     @OneToMany(mappedBy = "usuario")
@@ -45,10 +45,6 @@ public class Usuario extends Persona implements Serializable {
     private List<Comentario> comentarios;
 
     @ManyToMany(mappedBy = "usuarios")
-    @ToString.Exclude
-    private List<Producto> productoUsuarios;
-
-    @ManyToMany
     @ToString.Exclude
     private List<Producto> productosFavoritos;
 

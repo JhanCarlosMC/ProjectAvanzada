@@ -18,8 +18,8 @@ public class Compra implements Serializable {
     //Atributos propios de la entidad
     @Id
     @EqualsAndHashCode.Include
-    @Column(length = 40)
-    private String codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer codigo;
 
     @Column(nullable = false)
     private LocalDate fechaCompra;
@@ -37,7 +37,7 @@ public class Compra implements Serializable {
     private List<DetalleCompra> detalleCompras;
 
     //Constructor Completo
-    public Compra(String codigo, LocalDate fechaCompra, MedioPago medioPago)
+    public Compra(Integer codigo, LocalDate fechaCompra, MedioPago medioPago)
     {
         this.codigo = codigo;
         this.fechaCompra = fechaCompra;

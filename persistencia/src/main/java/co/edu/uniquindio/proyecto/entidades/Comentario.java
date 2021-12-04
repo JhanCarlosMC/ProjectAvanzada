@@ -3,10 +3,13 @@ package co.edu.uniquindio.proyecto.entidades;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.swing.text.DateFormatter;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter @Setter
@@ -18,13 +21,13 @@ public class Comentario implements Serializable {
     //Atributos propios de la entidad
     @Id
     @EqualsAndHashCode.Include
-    @Column(length = 40)
-    private String codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer codigo;
 
     @Column(length = 255, nullable = false)
     private String mensaje;
 
-    @Column(length = 255, nullable = false)
+    @Column(length = 255)
     private String respuesta;
 
     @Column(name = "fecha_comentario", nullable = false)
@@ -38,13 +41,16 @@ public class Comentario implements Serializable {
     @ManyToOne
     @JoinColumn(nullable = false)
     private Usuario usuario;
-
     @ManyToOne
     @JoinColumn(nullable = false)
     private Producto producto;
 
+    public String getFechaEstilo(){
+        return fechaComentario.format(DateTimeFormatter.ISO_DATE);
+    }
+
     //Constructor Completo
-    public Comentario(String codigo, String mensaje, String respuesta, LocalDate fechaComentario, int calificacion)
+    public Comentario(Integer codigo, String mensaje, String respuesta, LocalDate fechaComentario, int calificacion)
     {
         this.codigo = codigo;
         this.mensaje = mensaje;

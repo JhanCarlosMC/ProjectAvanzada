@@ -22,7 +22,7 @@ public class DetalleCompraTest {
     @Test
     //registrar un mensaje
     public void registrardetalleCompraTest() {
-        DetalleCompra detalleCompra = new DetalleCompra("1", 2, 20000);
+        DetalleCompra detalleCompra = new DetalleCompra(1, 2, 20000);
         DetalleCompra detalleCompraGuardado = detalleCompraRepo.save(detalleCompra);
         Assertions.assertNotNull(detalleCompraGuardado);
 

@@ -5,7 +5,6 @@ import co.edu.uniquindio.proyecto.entidades.Categoria;
 import java.util.List;
 
 public interface CategoriaServicio {
-
     Categoria registrarCategoria(Categoria categoria) throws Exception;
 
     Categoria actualizarCategoria(Categoria categoria) throws Exception;
@@ -16,4 +15,3 @@ public interface CategoriaServicio {
 
     Categoria obtenerCategoria(String id);
 }
-

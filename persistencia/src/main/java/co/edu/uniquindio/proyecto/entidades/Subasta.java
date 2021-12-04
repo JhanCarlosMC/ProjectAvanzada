@@ -20,12 +20,12 @@ public class Subasta implements Serializable {
     @Column(length = 40)
     private String codigo;
 
-    @Column(nullable = false, name = "fecha_limite")
+    @Column(nullable = false)
     private LocalDate fechaLimite;
 
     //Relaciones
     @ManyToOne
-//    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = false)
     private Producto producto;
 
     @OneToMany(mappedBy = "subasta")
