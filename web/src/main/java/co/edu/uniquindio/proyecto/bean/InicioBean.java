@@ -28,7 +28,8 @@ public class InicioBean implements Serializable {
         this.productos = productoServicio.listarTodosProductos();
     }
 
-    public String irADetalle(String id){
+    public String irADetalle(String id)
+    {
         return "/detalle_producto?faces-redirect=true&amp;producto="+id;
     }
     //34:40

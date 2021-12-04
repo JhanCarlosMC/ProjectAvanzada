@@ -6,6 +6,7 @@ import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,12 +64,56 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     }
 
     @Override
-    public void guardarProductoFavoritos(Producto producto, Usuario usuario) throws Exception {
+    public void guardarProductoFavoritos(Producto producto, Usuario usuario) throws Exception
+    {
+        //if(isFavorito(producto, usuario) == false)
 
+        System.out.println("Entra 1");
+        System.out.println("Usuario: "+usuario.getCodigo());
+        System.out.println("Producto: "+producto.getCodigo());
+
+        List<Producto> listaFavoritos = usuario.getProductosFavoritos();
+
+        for (int i = 0; i<listaFavoritos.size(); i++)
+        {
+            System.out.println("Entra 2");
+            Producto miP = listaFavoritos.get(i);
+            System.out.println("Producto "+i+": "+miP);
+        }
+
+        listaFavoritos.add(producto);
+        usuario.setProductosFavoritos(listaFavoritos);
+
+        System.out.println("Usuario: "+usuario.toString());
+
+        actualizarUsuario(usuario);
+
+    }
+    @Override
+    public boolean isFavorito(Producto producto, Usuario usuario)
+    {
+        boolean isFavorito = false;
+        List<Producto> listaProductos = usuario.getProductos();
+        for( int i = 0; i< listaProductos.size(); i++)
+        {
+            if(usuario.getProductosFavoritos().get(i).equals(producto))
+            {
+                isFavorito = true;
+            }
+        }
+        return isFavorito;
     }
 
     @Override
-    public void eliminarProductoFavorito(Producto producto, Usuario usuario) throws Exception {
-
+    public void eliminarProductoFavorito(Producto producto, Usuario usuario) throws Exception
+    {
+        if(isFavorito(producto, usuario))
+        {
+            usuario.getProductosFavoritos().remove(producto);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "El producto a eliminar no existe en la lista.");
+        }
     }
 }

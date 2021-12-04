@@ -179,6 +179,11 @@
     margin-left: 10px;
 }
 
+.button:active
+{
+    background: darkred;
+}
+
 @media only screen and (max-width: 768px) {
     .comentario-usuario{
         width: 100%;

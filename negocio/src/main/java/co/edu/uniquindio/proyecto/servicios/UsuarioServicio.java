@@ -25,6 +25,8 @@ public interface UsuarioServicio {
 
     void guardarProductoFavoritos(Producto producto, Usuario usuario) throws Exception;
 
+    boolean isFavorito(Producto producto, Usuario usuario);
+
     void eliminarProductoFavorito(Producto producto, Usuario usuario) throws Exception;
 }
 

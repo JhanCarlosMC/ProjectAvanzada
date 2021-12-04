@@ -43,7 +43,7 @@ public class UsuarioBean implements Serializable {
         ciudades = ciudadServicio.listarCiudades();
     }
 
-    public void registrarUsuario(){
+    public String registrarUsuario(){
         try {
             usuarioServicio.registrarUsuario(usuario);
             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,"Alerta","Registro exitoso");
@@ -52,5 +52,6 @@ public class UsuarioBean implements Serializable {
             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Alerta",e.getMessage());
             FacesContext.getCurrentInstance().addMessage("msj-bean",facesMessage);
         }
+        return "index.xhtml?faces-redirect=true";
     }
 }

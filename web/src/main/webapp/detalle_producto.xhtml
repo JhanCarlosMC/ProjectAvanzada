@@ -31,14 +31,21 @@
             <div class="col-lg-5 col-md-1">
                 <div class="p-grid">
                     <div class="box">
-                        <p:rating value="#{detalleProductoBean.calificacionPromedio}" readonly="true"/>
+                        <h:form>
+
+                            <p:commandButton type="button" class="pi pi-heart ui-button-success rounded-button p-mr-2 text-black" style="margin-left: 450px;" onclick="#{seguridadBean.isFavorito(detalleProductoBean.producto)}"/>
+
+                        </h:form>
+
+                        <p:rating value="#{detalleProductoBean.calificacionPromedio}" readonly="true" style="margin-top: -30px"/>
                         <h1 class="mt-4">#{detalleProductoBean.producto.nombre}</h1>
 
                         <h1 class="mt-4">$#{detalleProductoBean.producto.precio}</h1>
 
                         <h:form class="mt-4" rendered="#{seguridadBean.autenticado}">
                             <p:commandButton value="Añadir al carrito" icon="pi pi-shopping-cart" update="@form"
-                                             action="#{seguridadBean.agregarAlCarrito(detalleProductoBean.producto.codigo, detalleProductoBean.producto.precio, detalleProductoBean.producto.nombre, detalleProductoBean.producto.imagenPrincipal)}"/>
+                                             action="#{seguridadBean.agregarAlCarrito(detalleProductoBean.producto.codigo, detalleProductoBean.producto.precio,
+                                             detalleProductoBean.producto.nombre, detalleProductoBean.producto.imagenPrincipal)}"/>
                             <p:growl for="add-cart" showDetail="true"/>
                         </h:form>
                     </div>

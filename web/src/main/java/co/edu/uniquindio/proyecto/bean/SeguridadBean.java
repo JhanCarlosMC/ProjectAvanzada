@@ -3,6 +3,7 @@ package co.edu.uniquindio.proyecto.bean;
 
 import co.edu.uniquindio.proyecto.dto.ProductoCarrito;
 import co.edu.uniquindio.proyecto.entidades.MedioPago;
+import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
@@ -52,13 +53,18 @@ public class SeguridadBean {
         this.productosCarrito = new ArrayList<>();
     }
 
-    public String iniciarSesion(){
-        if(!email.isEmpty() && !password.isEmpty()){
-            try {
+    public String iniciarSesion()
+    {
+        if (!email.isEmpty() && !password.isEmpty())
+    {
+            try
+            {
                 usuarioSesion = usuarioServicio.login(email,password);
                 autenticado = true;
                 return "/index?faces-redirect=true";
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
                 FacesContext.getCurrentInstance().addMessage("login-bean", fm);
             }
@@ -66,7 +72,9 @@ public class SeguridadBean {
         return null;
     }
 
-    public String cerrarSesion(){
+    public String cerrarSesion()
+    {
+        //autenticado = false;
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "/index?faces-redirect=true";
     }
@@ -93,7 +101,8 @@ public class SeguridadBean {
         }
     }
 
-    public void comprar(){
+    public void comprar()
+    {
         if(usuarioSesion != null && !productosCarrito.isEmpty()){
             try {
                 productoServicio.comprarProductos(usuarioSesion,productosCarrito, MedioPago.TARJETA);
@@ -106,6 +115,33 @@ public class SeguridadBean {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta",e.getMessage());
                 FacesContext.getCurrentInstance().addMessage("compra-msj", fm);
             }
+        }
+    }
+
+    public void isFavorito(Producto miP)
+    {
+        FacesMessage fm;
+
+        if(autenticado=true)
+        {
+            System.out.println("Entra");
+            try
+            {
+                usuarioServicio.guardarProductoFavoritos(miP, usuarioSesion);
+                System.out.println(miP.getNombre());
+                fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Producto Favorito Agregado.");
+                FacesContext.getCurrentInstance().addMessage("producto-msj", fm);
+            }
+            catch (Exception e)
+            {
+                fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta",e.getMessage());
+                FacesContext.getCurrentInstance().addMessage("producto-msj", fm);
+            }
+        }
+        else
+        {
+            fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta","Debe logearse primero, antes de agregar un favorito.");
+            FacesContext.getCurrentInstance().addMessage("producto-msj", fm);
         }
     }
 }

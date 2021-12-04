@@ -31,7 +31,7 @@
                         <li>
                             <a href="/" class="nav-link text-white text-center">
                                 <i class="pi pi-home d-block mx-auto mb-1" style="font-size: 1.5rem"></i>
-                                Home
+                                Inicio
                             </a>
                         </li>
                         <li jsf:rendered ="#{seguridadBean.autenticado}">
@@ -52,16 +52,17 @@
                                 Compras
                             </a>
                         </li>
-                        <li jsf:rendered ="#{seguridadBean.autenticado}">
-                            <a href="/usuario/perfil.xhtml" class="nav-link text-white text-center" >
-                                <i class="pi pi-user d-block mx-auto mb-1" style="font-size: 1.5rem"></i>
-                                Perfil
-                            </a>
-                        </li>
+
                         <li jsf:rendered ="#{seguridadBean.autenticado}">
                             <a href="/usuario/carrito.xhtml" class="nav-link text-white text-center" >
                                 <i class="pi pi-shopping-cart d-block mx-auto mb-1" style="font-size: 1.5rem"></i>
                                 Carrito
+                            </a>
+                        </li>
+                        <li jsf:rendered ="#{seguridadBean.autenticado}">
+                            <a href="/usuario/perfil.xhtml" class="nav-link text-white text-center" >
+                                <i class="pi pi-user d-block mx-auto mb-1" style="font-size: 1.5rem"></i>
+                                Perfil
                             </a>
                         </li>
                     </ul>
@@ -74,7 +75,7 @@
 
                 <div class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
                     <h:form>
-                        <p:inputText placeholder="¿Que producto está buscando?" required="true" value="#{busquedaBean.busqueda}" />
+                        <p:inputText placeholder="¿Que producto está buscando?" required="true" value="#{busquedaBean.busqueda}" size="26"/>
                         <p:commandButton icon="pi pi-search" action="#{busquedaBean.buscar}" update="@form" />
                     </h:form>
                 </div>
