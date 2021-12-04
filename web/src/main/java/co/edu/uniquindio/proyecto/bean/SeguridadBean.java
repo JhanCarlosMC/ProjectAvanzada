@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.bean;
 
+
 import co.edu.uniquindio.proyecto.dto.ProductoCarrito;
 import co.edu.uniquindio.proyecto.entidades.MedioPago;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
@@ -16,6 +17,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.util.ArrayList;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 @Scope("session")
 @Component
 public class SeguridadBean {
@@ -31,6 +35,7 @@ public class SeguridadBean {
 
     @Autowired
     private UsuarioServicio usuarioServicio;
+
 
     @Autowired
     private ProductoServicio productoServicio;
@@ -50,7 +55,7 @@ public class SeguridadBean {
     public String iniciarSesion(){
         if(!email.isEmpty() && !password.isEmpty()){
             try {
-                usuarioSesion = usuarioServicio.iniciarSesion(email,password);
+                usuarioSesion = usuarioServicio.login(email,password);
                 autenticado = true;
                 return "/index?faces-redirect=true";
             } catch (Exception e) {
@@ -103,5 +108,4 @@ public class SeguridadBean {
             }
         }
     }
-
 }

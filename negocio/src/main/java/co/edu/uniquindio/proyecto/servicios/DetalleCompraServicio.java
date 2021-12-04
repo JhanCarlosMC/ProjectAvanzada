@@ -10,9 +10,9 @@ public interface DetalleCompraServicio {
 
     DetalleCompra actualizarDetalleCompra(DetalleCompra detalleCompra) throws Exception;
 
-    void eliminarDetalleCompra(String codigo) throws Exception;
+    void eliminarDetalleCompra(Integer codigo) throws Exception;
 
     List<DetalleCompra> listaDetallesCompra();
 
-    DetalleCompra obtenerDetalleCompra(String id);
+    DetalleCompra obtenerDetalleCompra(Integer id);
 }

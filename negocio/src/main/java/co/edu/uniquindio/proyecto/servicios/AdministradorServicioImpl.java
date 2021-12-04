@@ -68,7 +68,6 @@ public class AdministradorServicioImpl implements AdministradorServicio {
     //Metodo para validar que un administrador este registrado e iniciar sesion en base al email y password
     public Administrador login(String email, String password) throws Exception {
         return administradorRepo.findByEmailAndPassword(email,password).orElseThrow(() -> new Exception("Los datos de autenticacion no son correctos"));
-
     }
 
     @Override

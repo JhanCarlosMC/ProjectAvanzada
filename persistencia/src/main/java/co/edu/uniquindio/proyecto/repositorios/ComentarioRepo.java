@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ComentarioRepo extends JpaRepository<Comentario,String>
+public interface ComentarioRepo extends JpaRepository<Comentario,Integer>
 {
     @Query("select c from Comentario c where c.producto.codigo = :codigoProducto")
     List<Comentario>listaComentarios(String codigoProducto);

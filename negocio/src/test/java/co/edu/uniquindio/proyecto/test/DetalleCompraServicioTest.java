@@ -20,7 +20,7 @@ public class DetalleCompraServicioTest {
 
     @Test
     public void ingresarDetalleCompraTest(){
-        DetalleCompra detalleCompra = new DetalleCompra("1", 2, 20000);
+        DetalleCompra detalleCompra = new DetalleCompra(1, 2, 20000);
 
         try {
             DetalleCompra respuesta = detalleCompraServicio.regitrarDetalleCompra(detalleCompra);
@@ -32,10 +32,10 @@ public class DetalleCompraServicioTest {
 
     @Test
     public void actualizarDetalleCompraTest() throws Exception {
-        DetalleCompra detalleCompra = new DetalleCompra("1", 2, 20000);
+        DetalleCompra detalleCompra = new DetalleCompra(1, 2, 20000);
         detalleCompraServicio.regitrarDetalleCompra(detalleCompra);
 
-        DetalleCompra updateDC = detalleCompraServicio.obtenerDetalleCompra("1");
+        DetalleCompra updateDC = detalleCompraServicio.obtenerDetalleCompra(1);
         updateDC.setPrecioProducto(32000);
 
         DetalleCompra modificado = detalleCompraServicio.actualizarDetalleCompra(updateDC);
@@ -44,16 +44,16 @@ public class DetalleCompraServicioTest {
 
     @Test
     public void eliminarDetalleCompraTest() throws Exception {
-        DetalleCompra detalleCompra = new DetalleCompra("1", 2, 20000);
+        DetalleCompra detalleCompra = new DetalleCompra(1, 2, 20000);
         detalleCompraServicio.regitrarDetalleCompra(detalleCompra);
 
-        detalleCompraServicio.eliminarDetalleCompra("1");
+        detalleCompraServicio.eliminarDetalleCompra(1);
         Assertions.assertTrue(true);
     }
 
     @Test
     public void listaDetallesCompraTest() throws Exception {
-        DetalleCompra detalleCompra = new DetalleCompra("1", 2, 20000);
+        DetalleCompra detalleCompra = new DetalleCompra(1, 2, 20000);
         detalleCompraServicio.regitrarDetalleCompra(detalleCompra);
 
         List<DetalleCompra> listaDetallesCompra = detalleCompraServicio.listaDetallesCompra();

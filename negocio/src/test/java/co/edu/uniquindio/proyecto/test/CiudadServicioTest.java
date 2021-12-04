@@ -35,7 +35,7 @@ public class CiudadServicioTest {
         Ciudad miC = new Ciudad(0, "Armenia");
         ciudadServicio.registrarCiudad(miC);
 
-        Ciudad updateCity = ciudadServicio.obtenerCiudad(0);
+        Ciudad updateCity = ciudadServicio.obtenerCiudad(1);
         updateCity.setNombre("Medallo");
 
         Ciudad modificado = ciudadServicio.actualizarCiudad(updateCity);
@@ -56,7 +56,7 @@ public class CiudadServicioTest {
         Ciudad miC = new Ciudad(0, "Armenia");
         ciudadServicio.registrarCiudad(miC);
 
-        List<Ciudad> listaCiudades = ciudadServicio.listaCiudades();
+        List<Ciudad> listaCiudades = ciudadServicio.listarCiudades();
         listaCiudades.forEach(System.out::println);
     }
 }

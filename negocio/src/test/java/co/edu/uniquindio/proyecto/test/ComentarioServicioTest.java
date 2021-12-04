@@ -21,7 +21,7 @@ public class ComentarioServicioTest {
 
     @Test
     public void ingresarComentario() {
-        Comentario miCt = new Comentario("0", "Mensaje Prueba", "Respuesta Prueba", LocalDate.of(2018, 10, 30), 5);
+        Comentario miCt = new Comentario(0, "Mensaje Prueba", "Respuesta Prueba", LocalDate.of(2018, 10, 30), 5);
 
         try {
             Comentario respuesta = comentarioServicio.registrarComentario(miCt);
@@ -33,10 +33,10 @@ public class ComentarioServicioTest {
 
     @Test
     public void actualizarComentarioTest() throws Exception {
-        Comentario miCt = new Comentario("0", "Mensaje Prueba", "Respuesta Prueba", LocalDate.of(2018, 10, 30), 5);
+        Comentario miCt = new Comentario(0, "Mensaje Prueba", "Respuesta Prueba", LocalDate.of(2018, 10, 30), 5);
         comentarioServicio.registrarComentario(miCt);
 
-        Comentario updateComent = comentarioServicio.obtenerComentario("0");
+        Comentario updateComent = comentarioServicio.obtenerComentario(0);
         updateComent.setMensaje("Mensaje remplazado");
 
         Comentario modificado = comentarioServicio.actualzarComentario(updateComent);
@@ -45,16 +45,16 @@ public class ComentarioServicioTest {
 
     @Test
     public void eliminarComentarioTest() throws Exception {
-        Comentario miCt = new Comentario("0", "Mensaje Prueba", "Respuesta Prueba", LocalDate.of(2018, 10, 30), 5);
+        Comentario miCt = new Comentario(0, "Mensaje Prueba", "Respuesta Prueba", LocalDate.of(2018, 10, 30), 5);
         comentarioServicio.registrarComentario(miCt);
 
-        comentarioServicio.eliminarComentario("0");
+        comentarioServicio.eliminarComentario(0);
         Assertions.assertTrue(true);
     }
 
     @Test
     public void listaComentariosTest() throws Exception {
-        Comentario miCt = new Comentario("0", "Mensaje Prueba", "Respuesta Prueba", LocalDate.of(2018, 10, 30), 5);
+        Comentario miCt = new Comentario(0, "Mensaje Prueba", "Respuesta Prueba", LocalDate.of(2018, 10, 30), 5);
         comentarioServicio.registrarComentario(miCt);
 
         List<Comentario> listaComentarios = comentarioServicio.listaComentarios();

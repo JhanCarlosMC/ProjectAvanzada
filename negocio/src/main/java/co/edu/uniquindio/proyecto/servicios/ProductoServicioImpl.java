@@ -42,8 +42,8 @@ public class ProductoServicioImpl implements ProductoServicio{
     }
 
     @Override
-    public void actualizarProducto(Producto p) throws Exception {
-
+    public Producto actualizarProducto(Producto p) throws Exception {
+        return productoRepo.save(p);
     }
 
     @Override

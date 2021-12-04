@@ -59,4 +59,11 @@ public class Comentario implements Serializable {
         this.calificacion = calificacion;
     }
 
+    public Comentario(String mensaje, String respuesta, LocalDate fechaComentario, int calificacion)
+    {
+        this.mensaje = mensaje;
+        this.respuesta = respuesta;
+        this.fechaComentario = fechaComentario;
+        this.calificacion = calificacion;
+    }
 }

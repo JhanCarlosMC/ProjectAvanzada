@@ -34,7 +34,7 @@ public class DetalleCompraServicioImpl implements DetalleCompraServicio{
     }
 
     @Override
-    public void eliminarDetalleCompra(String codigo) throws Exception {
+    public void eliminarDetalleCompra(Integer codigo) throws Exception {
         Optional<DetalleCompra> buscado = detalleCompraRepo.findById(codigo);
 
         if (buscado.isEmpty()){
@@ -50,7 +50,7 @@ public class DetalleCompraServicioImpl implements DetalleCompraServicio{
     }
 
     @Override
-    public DetalleCompra obtenerDetalleCompra(String id) {
+    public DetalleCompra obtenerDetalleCompra(Integer id) {
         return detalleCompraRepo.getById(id);
     }
 }

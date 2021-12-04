@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.servicios;
 
+import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +55,20 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     @Override
     public Usuario iniciarSesion(String email, String password) throws Exception {
         return usuarioRepo.findByEmailAndPassword(email,password).orElseThrow(() -> new Exception("Los datos de autenticación son incorrectos"));
+    }
+
+    @Override
+    public String recuperarPassword(String email) throws Exception {
+        return null;
+    }
+
+    @Override
+    public void guardarProductoFavoritos(Producto producto, Usuario usuario) throws Exception {
+
+    }
+
+    @Override
+    public void eliminarProductoFavorito(Producto producto, Usuario usuario) throws Exception {
+
     }
 }

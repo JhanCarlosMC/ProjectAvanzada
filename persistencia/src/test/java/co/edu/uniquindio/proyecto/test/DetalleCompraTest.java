@@ -33,8 +33,8 @@ public class DetalleCompraTest {
     //Eliminar un detalle compra
     public void eliminardetalleCompraTest() {
 
-        detalleCompraRepo.deleteById("1");
-        DetalleCompra detalleCompraBuscado = detalleCompraRepo.findById("1").orElse(null);
+        detalleCompraRepo.deleteById(1);
+        DetalleCompra detalleCompraBuscado = detalleCompraRepo.findById(1).orElse(null);
 
         Assertions.assertNull(detalleCompraBuscado);
 
@@ -44,11 +44,11 @@ public class DetalleCompraTest {
     //Actualizar un detalle compra
     @Sql("classpath:dataSet.sql")
     public void actualizardetalleCompraTest() {
-        DetalleCompra detalleCompraGuardado = detalleCompraRepo.findById("1").orElse(null);
+        DetalleCompra detalleCompraGuardado = detalleCompraRepo.findById(1).orElse(null);
         detalleCompraGuardado.setPrecioProducto(30000);
         detalleCompraRepo.save(detalleCompraGuardado);
 
-        DetalleCompra detalleCompraBuscado = detalleCompraRepo.findById("1").orElse(null);
+        DetalleCompra detalleCompraBuscado = detalleCompraRepo.findById(1).orElse(null);
         Assertions.assertEquals(30000, detalleCompraBuscado.getPrecioProducto());
 
 

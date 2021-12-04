@@ -23,7 +23,7 @@ public class CompraServicioTest {
 
     @Test
     public void registrarComentarioTest(){
-        Compra miCp = new Compra("0", LocalDate.of(2018, 10, 30), MedioPago.TARJETA);
+        Compra miCp = new Compra(0, LocalDate.of(2018, 10, 30), MedioPago.TARJETA);
 
         try {
             Compra respuesta = compraServicio.registrarCompra(miCp);
@@ -35,10 +35,10 @@ public class CompraServicioTest {
 
     @Test
     public void actualizarComentariosTest() throws Exception {
-        Compra miCp = new Compra("0", LocalDate.of(2018, 10, 30), MedioPago.TARJETA);
+        Compra miCp = new Compra(0, LocalDate.of(2018, 10, 30), MedioPago.TARJETA);
         compraServicio.registrarCompra(miCp);
 
-        Compra updateCompra = compraServicio.obtenerCompra("0");
+        Compra updateCompra = compraServicio.obtenerCompra(0);
         updateCompra.setFechaCompra(LocalDate.of(2021, 10, 30));
 
         Compra modificado = compraServicio.actualizarCompra(updateCompra);
@@ -47,16 +47,16 @@ public class CompraServicioTest {
 
     @Test
     public void eliminarComentarioTest() throws Exception {
-        Compra miCp = new Compra("0", LocalDate.of(2018, 10, 30), MedioPago.TARJETA);
+        Compra miCp = new Compra(0, LocalDate.of(2018, 10, 30), MedioPago.TARJETA);
         compraServicio.registrarCompra(miCp);
 
-        compraServicio.eliminarCompra("0");
+        compraServicio.eliminarCompra(0);
         Assertions.assertTrue(true);
     }
 
     @Test
     public void listaComentariosTest() throws Exception {
-        Compra miCp = new Compra("0", LocalDate.of(2018, 10, 30), MedioPago.TARJETA);
+        Compra miCp = new Compra(0, LocalDate.of(2018, 10, 30), MedioPago.TARJETA);
         compraServicio.registrarCompra(miCp);
 
         List<Compra> listaCompras = compraServicio.listaCompras();

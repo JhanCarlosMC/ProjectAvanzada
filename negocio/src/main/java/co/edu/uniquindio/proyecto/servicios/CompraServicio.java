@@ -10,9 +10,9 @@ public interface CompraServicio {
 
     Compra actualizarCompra(Compra compra) throws Exception;
 
-    void eliminarCompra(String codigo) throws Exception;
+    void eliminarCompra(Integer codigo) throws Exception;
 
     List<Compra> listaCompras();
 
-    Compra obtenerCompra(String id);
+    Compra obtenerCompra(Integer id);
 }

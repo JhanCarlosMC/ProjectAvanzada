@@ -32,8 +32,8 @@ public class ComentarioTest {
     @Sql("classpath:dataSet.sql")
     //Eliminar un comentario
     public void eliminarComentarioTest() {
-        miCtRepo.deleteById("1");
-        Comentario miCt = miCtRepo.findById("1").orElse(null);
+        miCtRepo.deleteById(1);
+        Comentario miCt = miCtRepo.findById(1).orElse(null);
 
         Assertions.assertNull(miCt);
     }
@@ -42,7 +42,7 @@ public class ComentarioTest {
     @Sql("classpath:dataSet.sql")
     //Actualizar Comentario
     public void actualizarComentarioTest() {
-        Comentario miCt = miCtRepo.findById("1").orElse(null);
+        Comentario miCt = miCtRepo.findById(1).orElse(null);
         miCt.setCalificacion(1);
         Comentario miCNuevo = miCtRepo.save(miCt);
         Assertions.assertEquals(1, miCNuevo.getCalificacion());

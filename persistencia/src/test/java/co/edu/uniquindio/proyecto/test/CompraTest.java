@@ -34,8 +34,8 @@ public class CompraTest {
     @Sql("classpath:dataSet.sql")
     //Eliminar una compra
     public void eliminarCompraTest() {
-        miCpRepo.deleteById("1");
-        Compra miCp = miCpRepo.findById("1").orElse(null);
+        miCpRepo.deleteById(1);
+        Compra miCp = miCpRepo.findById(1).orElse(null);
 
         Assertions.assertNull(miCp);
     }
@@ -44,7 +44,7 @@ public class CompraTest {
     @Sql("classpath:dataSet.sql")
     //Actualizar una compra
     public void actualizarCompraTest() {
-        Compra miCp = miCpRepo.findById("1").orElse(null);
+        Compra miCp = miCpRepo.findById(1).orElse(null);
         miCp.setMedioPago(MedioPago.DECONTADO);
         Compra miCNuevo = miCpRepo.save(miCp);
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CompraRepo extends JpaRepository<Compra, String> {
+public interface CompraRepo extends JpaRepository<Compra, Integer> {
 
     @Query("select c.medioPago, count(c.codigo) from Compra c join c.detalleCompras dc group by c.medioPago")
     List<Object[]>cantidadComprasMP();

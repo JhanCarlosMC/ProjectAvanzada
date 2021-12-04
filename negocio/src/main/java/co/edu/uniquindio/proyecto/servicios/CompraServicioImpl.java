@@ -33,7 +33,7 @@ public class CompraServicioImpl implements CompraServicio{
     }
 
     @Override
-    public void eliminarCompra(String codigo) throws Exception {
+    public void eliminarCompra(Integer codigo) throws Exception {
         Optional<Compra> buscado = compraRepo.findById(codigo);
 
         if (buscado.isEmpty()){
@@ -49,7 +49,7 @@ public class CompraServicioImpl implements CompraServicio{
     }
 
     @Override
-    public Compra obtenerCompra(String id) {
+    public Compra obtenerCompra(Integer id) {
         return compraRepo.getById(id);
     }
 }

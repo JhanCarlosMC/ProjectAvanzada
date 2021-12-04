@@ -12,7 +12,7 @@ public interface ProductoServicio {
 
     Producto publicarProducto(Producto p) throws Exception;
 
-    void actualizarProducto(Producto p) throws Exception;
+    Producto actualizarProducto(Producto p) throws Exception;
 
     void eliminarProducto(Integer codigo) throws Exception;
 
