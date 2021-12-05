@@ -15,36 +15,37 @@
         <h1>Productos Publicados</h1>
 
         <h:form>
-            <p:dataView value="#{perfilBean.listaProductos}"  var="producto">
+            <p:dataView value="#{perfilBean.listaProductos}" var="producto">
 
                 <p:dataViewListItem>
-                    <div class="row d-flex item-pro" >
-                        <div class="col-lg-2 col-md-1" style="text-align: center" >
-                            <p:graphicImage url="/uploads/#{producto.imagenPrincipal}" styleClass="imagen-producto" />
+                    <div class="row d-flex item-pro">
+                        <div class="col-lg-2 col-md-1" style="text-align: center">
+                            <p:graphicImage url="/uploads/#{producto.imagenPrincipal}" styleClass="imagen-producto"/>
 
-                                </div>
+                        </div>
 
-                                    <div class="col-lg-8 col-md-1 align-self-center" >
-                                        <p:outputPanel>
+                        <div class="col-lg-8 col-md-1 align-self-center">
+                            <p:outputPanel>
 
-                                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:panelGrid columns="2" cellpadding="5">
 
-                                                <h:outputText value="Nombre:" />
-                                                <h:outputText value="#{producto.nombre}" style="font-weight: bold" />
-                                                <h:outputText value="Precio:" />
-                                                <h:outputText value="$#{producto.precio}" />
-                                                <h:outputText value="Categorías:"/>
-                                                <h:outputText value="#{producto.categorias}" />
-                                                <h:outputText value="Unidades:"/>
-                                                <h:outputText value="#{producto.unidades}" />
+                                    <h:outputText value="Nombre:"/>
+                                    <h:outputText value="#{producto.nombre}" style="font-weight: bold"/>
+                                    <h:outputText value="Precio:"/>
+                                    <h:outputText value="$#{producto.precio}"/>
+                                    <h:outputText value="Categorías:"/>
+                                    <h:outputText value="#{producto.categorias}"/>
+                                    <h:outputText value="Unidades:"/>
+                                    <h:outputText value="#{producto.unidades}"/>
 
-                                            </h:panelGrid>
+                                </h:panelGrid>
 
-                                        </p:outputPanel>
+                            </p:outputPanel>
 
-                                    </div>
-                                <div class="col-lg-2 col-md-1 align-self-center" >
-                            <p:commandButton value="Gestionar" styleClass="ui-button-raised" icon="pi pi-arrow-right" iconPos="right" action="#{inicioBean.irAGestion(producto.codigo)}" />
+                        </div>
+                        <div class="col-lg-2 col-md-1 align-self-center">
+                            <p:commandButton value="Gestionar" styleClass="ui-button-raised" icon="pi pi-arrow-right"
+                                             iconPos="right" action="#{inicioBean.irAGestion(producto.codigo)}"/>
 
                         </div>
                     </div>

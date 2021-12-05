@@ -12,38 +12,31 @@
     <ui:define name="Titulo">Compras</ui:define>
     <ui:define name="content">
         <h2>Mis Compras</h2>
-        <h:form >
-            <p:dataView value="#{compraBean.listaCompras}" var="compra"  paginator="true" rows="3" >
-                <p:dataViewListItem >
-                    <div class="row d-flex card" >
-                            <div class="card-body">
-                                <p:commandButton value="Ver detalle" styleClass="ui-button-raised" icon="pi pi-arrow-right" iconPos="right" action="#{inicioBean.irADetalle(compra.codigo)}" />
-                            </div>
+        <h:form>
+            <p:dataView value="#{compraBean.listaCompras}"  var="producto" gridIcon="pi pi-th-large" listIcon="pi pi-bars">
+
+                <p:dataViewListItem>
+                    <div class="row d-flex item-pro" >
+                        <div class="col-lg-2 col-md-1" style="text-align: center" >
+                            <p:graphicImage url="/uploads/#{producto.imagenPrincipal}" styleClass="imagen-producto"/>
+
+                        </div>
                         <div class="col-lg-8 col-md-1 align-self-center card-body" >
                             <p:outputPanel >
                                 <h:panelGrid columns="2" cellpadding="5">
                                     <h:outputText value="Fecha de la Compra:" />
-                                    <h:outputText value="#{compra.fechaCompra}" style="font-weight:bold" />
+                                    <h:outputText value="#{producto.fechaCompra}" style="font-weight:bold" />
                                     <h:outputText value="Medio de Pago:" />
-                                    <h:outputText value="#{compra.medioPago}" style="..." />
+                                    <h:outputText value="#{producto.medioPago}" style="..." />
 
                                 </h:panelGrid>
                             </p:outputPanel>
 
                         </div>
-                        <div class="col-lg-2 col-md-1 align-self-center" >
 
-
-                        </div>
                     </div>
-
-
-
-
-
                 </p:dataViewListItem>
             </p:dataView>
-
         </h:form>
 
 
