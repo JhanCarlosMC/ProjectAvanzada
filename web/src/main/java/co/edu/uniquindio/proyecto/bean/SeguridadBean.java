@@ -117,31 +117,4 @@ public class SeguridadBean {
             }
         }
     }
-
-    public void isFavorito(Producto miP)
-    {
-        FacesMessage fm;
-
-        if(autenticado=true)
-        {
-            System.out.println("Entra");
-            try
-            {
-                usuarioServicio.guardarProductoFavoritos(miP, usuarioSesion);
-                System.out.println(miP.getNombre());
-                fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Producto Favorito Agregado.");
-                FacesContext.getCurrentInstance().addMessage("producto-msj", fm);
-            }
-            catch (Exception e)
-            {
-                fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta",e.getMessage());
-                FacesContext.getCurrentInstance().addMessage("producto-msj", fm);
-            }
-        }
-        else
-        {
-            fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta","Debe logearse primero, antes de agregar un favorito.");
-            FacesContext.getCurrentInstance().addMessage("producto-msj", fm);
-        }
-    }
 }

@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -40,6 +42,9 @@ public class DetalleProductoBean implements Serializable {
     private List<Comentario> comentarios;
 
     @Getter @Setter
+    private List<Producto> listaProductoFavoritos;
+
+    @Getter @Setter
     private Integer calificacionPromedio;
 
     @Value("#{seguridadBean.usuarioSesion}")
@@ -48,6 +53,7 @@ public class DetalleProductoBean implements Serializable {
     @PostConstruct
     public void inicializar(){
         nuevoComentario = new Comentario();
+        listaProductoFavoritos = new ArrayList<>();
         if(codigoProducto != null && !codigoProducto.isEmpty()){
             Integer codigo = Integer.parseInt(codigoProducto);
             producto = productoServicio.obtenerProducto(codigo);
@@ -68,6 +74,28 @@ public class DetalleProductoBean implements Serializable {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    public void guardarListProductosFavoritos(Integer codigo)
+    {
+        try {
+            producto  = productoServicio.obtenerProducto(codigo);
+
+            if(listaProductoFavoritos.contains(producto) == false)
+            {
+                listaProductoFavoritos.add(producto);
+                usuarioSesion.setProductosFavoritos(listaProductoFavoritos);
+                usuarioServicio.guardarProductoFavoritos(usuarioSesion);
+
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito", "¡Producto Favorito!");
+                FacesContext.getCurrentInstance().addMessage("add-fav", fm);
+            }else {
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "El producto ya esta en favoritos.");
+                FacesContext.getCurrentInstance().addMessage("add-fav", fm);
+            }
+        } catch (Exception e) {
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error",e.getMessage());
+            FacesContext.getCurrentInstance().addMessage("add-fav",fm);
         }
     }
 }

@@ -104,8 +104,9 @@ public class ProductoServicioImpl implements ProductoServicio{
     }
 
     @Override
-    public List<Producto> listarProductos(String codigoUsuario) throws Exception {
-        return null;
+    public List<Producto> listarProductos(String codigoUsuario)
+    {
+        return productoRepo.listarCodUsuario(codigoUsuario);
     }
 
     @Override

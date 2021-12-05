@@ -43,7 +43,7 @@ public class Usuario extends Persona implements Serializable {
     @ToString.Exclude
     private List<Comentario> comentarios;
 
-    @ManyToMany(mappedBy = "usuarios")
+    @ManyToMany
     @ToString.Exclude
     private List<Producto> productosFavoritos;
 

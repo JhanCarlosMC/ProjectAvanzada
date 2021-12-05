@@ -88,7 +88,7 @@ public class Producto implements Serializable
     @ToString.Exclude
     private List<Chat> chat;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "productosFavoritos")
     @ToString.Exclude
     private List<Usuario> usuarios;
 
@@ -103,7 +103,8 @@ public class Producto implements Serializable
         this.fechaLimite = fechaLimite;
     }
 
-    public String getImagenPrincipal(){
+    public String getImagenPrincipal()
+    {
         if (imagenes != null && !imagenes.isEmpty()){
             return imagenes.get(0);
         }
