@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -17,7 +18,8 @@ import java.util.Map;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @ToString
-public class Producto implements Serializable {
+public class Producto implements Serializable
+{
 
     //Atributos propios de la entidad
     @Id
@@ -43,9 +45,11 @@ public class Producto implements Serializable {
 
     @Min(0)
     @Column(nullable = false)
+    @Positive(message = "El precio del producto debe ser valido.")
     private int precio;
 
     @Min(0)
+    @PositiveOrZero
     private int descuento;
 
     @Column(name = "fecha_limite", nullable = false)
@@ -84,7 +88,7 @@ public class Producto implements Serializable {
     @ToString.Exclude
     private List<Chat> chat;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "productosFavoritos")
     @ToString.Exclude
     private List<Usuario> usuarios;
 
@@ -99,7 +103,8 @@ public class Producto implements Serializable {
         this.fechaLimite = fechaLimite;
     }
 
-    public String getImagenPrincipal(){
+    public String getImagenPrincipal()
+    {
         if (imagenes != null && !imagenes.isEmpty()){
             return imagenes.get(0);
         }

@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.servicios;
 
+import co.edu.uniquindio.proyecto.entidades.Compra;
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 
@@ -23,8 +24,12 @@ public interface UsuarioServicio {
 
     String recuperarPassword(String email) throws Exception;
 
-    void guardarProductoFavoritos(Producto producto, Usuario usuario) throws Exception;
+    void guardarProductoFavoritos(Usuario usuario) throws Exception;
 
     void eliminarProductoFavorito(Producto producto, Usuario usuario) throws Exception;
+
+    List<Compra> listarUsuarios(String codigo) throws Exception;
+
+
 }
 

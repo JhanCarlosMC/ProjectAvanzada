@@ -40,8 +40,6 @@
                 </h:panelGrid>
                 <p:growl showDetail="true" for="msj-bean"/>
                 <p:commandButton styleClass="mt-4 d-block m-auto" value="Actualizar Usuario" action="#{detalleUsuarioBean.actualizarUsuario}" update="@form" icon="pi pi-user-plus"/>
-
-                <p:commandButton styleClass="mt-4 d-block m-auto" value="Eliminar Usuario" action="#{detalleUsuarioBean.eliminarUsuario(detalleUsuarioBean.usuario.codigo)}" update="@form" icon="pi pi-user-plus"/>
             </h:form>
         </p:panel>
     </ui:define>

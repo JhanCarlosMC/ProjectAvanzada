@@ -1,11 +1,13 @@
 package co.edu.uniquindio.proyecto.servicios;
 
+import co.edu.uniquindio.proyecto.entidades.Compra;
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +45,8 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     }
 
     @Override
-    public Usuario login(String email, String password) throws Exception {
+    public Usuario login(String email, String password) throws Exception
+    {
         return usuarioRepo.findByEmailAndPassword(email,password).orElseThrow(() -> new Exception(""));
     }
 
@@ -63,12 +66,26 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     }
 
     @Override
-    public void guardarProductoFavoritos(Producto producto, Usuario usuario) throws Exception {
-
+    public void guardarProductoFavoritos(Usuario usuario) throws Exception
+    {
+        usuarioRepo.save(usuario);
+    }
+    @Override
+    public void eliminarProductoFavorito(Producto producto, Usuario usuario) throws Exception
+    {
+        if(usuario.getProductosFavoritos().contains(producto))
+        {
+            usuario.getProductosFavoritos().remove(producto);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "El producto a eliminar no existe en la lista.");
+        }
     }
 
     @Override
-    public void eliminarProductoFavorito(Producto producto, Usuario usuario) throws Exception {
-
+    public List<Compra> listarUsuarios(String codigo) throws Exception {
+        return usuarioRepo.findByCodigo(codigo).orElseThrow(()-> new Exception("")).getCompras();
     }
+
 }

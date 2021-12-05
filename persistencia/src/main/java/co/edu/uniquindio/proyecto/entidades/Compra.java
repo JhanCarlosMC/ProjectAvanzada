@@ -23,6 +23,7 @@ public class Compra implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigo;
 
+
     @Column(nullable = false)
     private LocalDate fechaCompra;
 
@@ -39,6 +40,10 @@ public class Compra implements Serializable {
     @ToString.Exclude
     private List<DetalleCompra> detalleCompras;
 
+    @ElementCollection
+    @Column(nullable = true)
+    private List<String> imagenes;
+
     //Constructor Completo
     public Compra(Integer codigo, LocalDate fechaCompra, MedioPago medioPago)
     {
@@ -46,4 +51,11 @@ public class Compra implements Serializable {
         this.fechaCompra = fechaCompra;
         this.medioPago = medioPago;
     }
+    public String getImagenPrincipal(){
+        if (imagenes != null && !imagenes.isEmpty()){
+            return imagenes.get(0);
+        }
+        return "default.png";
+    }
+
 }

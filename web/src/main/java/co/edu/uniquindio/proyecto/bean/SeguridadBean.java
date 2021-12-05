@@ -3,6 +3,7 @@ package co.edu.uniquindio.proyecto.bean;
 
 import co.edu.uniquindio.proyecto.dto.ProductoCarrito;
 import co.edu.uniquindio.proyecto.entidades.MedioPago;
+import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
@@ -57,6 +58,7 @@ public class SeguridadBean {
         this.productosCarrito = new ArrayList<>();
     }
 
+
     public String iniciarSesion() {
 
         if (!email.isEmpty() && !password.isEmpty()) {
@@ -65,7 +67,7 @@ public class SeguridadBean {
                     usuarioSesion = usuarioServicio.login(email, password);
                     autenticado = true;
                     return "/administrador/gestionar_usuarios?faces-redirect=true";
-                }catch (Exception e){
+                } catch (Exception e) {
                     FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
                     FacesContext.getCurrentInstance().addMessage("login-bean", fm);
                 }
@@ -86,7 +88,9 @@ public class SeguridadBean {
         return null;
     }
 
+
     public String cerrarSesion() {
+        //autenticado = false;
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "/index?faces-redirect=true";
     }

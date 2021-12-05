@@ -34,7 +34,7 @@ public interface ProductoServicio {
 
     List<Producto>buscarProductos(String nombreProducto, String[] filtros);
 
-    List<Producto>listarProductos(String codigoUsuario) throws Exception;
+    List<Producto>listarProductos(String codigoUsuario);
 
     List<CategoriaEnum>listarCategorias();
 

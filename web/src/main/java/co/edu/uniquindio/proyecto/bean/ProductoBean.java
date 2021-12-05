@@ -61,7 +61,7 @@ public class ProductoBean implements Serializable {
 
     }
 
-    public void crearProducto(){
+    public String crearProducto(){
         try {
             if(usuarioSesion != null){
                 if(!imagenes.isEmpty()){
@@ -82,6 +82,7 @@ public class ProductoBean implements Serializable {
             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Alerta",e.getMessage());
             FacesContext.getCurrentInstance().addMessage(null,facesMessage);
         }
+        return "index.xhtml?face-redirect=true";
     }
 
     public void subirImagenes(FileUploadEvent event){

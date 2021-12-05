@@ -25,11 +25,13 @@ public class InicioBean implements Serializable {
     @Autowired
     private UsuarioServicio usuarioServicio;
 
-    @Getter @Setter
-    private List<Producto>productos;
+    @Getter
+    @Setter
+    private List<Producto> productos;
 
-    @Getter @Setter
-    private List<Usuario>usuarios;
+    @Getter
+    @Setter
+    private List<Usuario> usuarios;
 
     @PostConstruct
     public void inicializar() throws Exception {
@@ -38,11 +40,17 @@ public class InicioBean implements Serializable {
     }
 
 
-    public String irADetalle(String id){
-        return "/detalle_producto?faces-redirect=true&amp;producto="+id;
+    public String irADetalle(String id) {
+        return "/detalle_producto?faces-redirect=true&amp;producto=" + id;
     }
 
-    public String irADetalleUsuario(String codigo){
-        return "/administrador/detalle_usuario?faces-redirect=true&amp;usuario="+codigo;
+    public String irADetalleUsuario(String codigo) {
+        return "/administrador/detalle_usuario?faces-redirect=true&amp;usuario=" + codigo;
+    }
+
+    public String irAGestion(String id) {
+
+        return "gestion_producto?faces-redirect=true&amp;producto=" + id;
+
     }
 }

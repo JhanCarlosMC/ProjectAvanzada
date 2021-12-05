@@ -6,8 +6,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Entity
@@ -47,7 +46,7 @@ public class Usuario extends Persona implements Serializable {
     @ToString.Exclude
     private List<Comentario> comentarios;
 
-    @ManyToMany(mappedBy = "usuarios")
+    @ManyToMany
     @ToString.Exclude
     private List<Producto> productosFavoritos;
 
