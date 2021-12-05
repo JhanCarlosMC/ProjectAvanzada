@@ -28,12 +28,26 @@ public class SeguridadFilter implements Filter {
                 if (userManager != null) {
                     if (userManager.isAutenticado()) {
 //El usuario está logueado entonces si puede ver la página
-
-
                         filterChain.doFilter(servletRequest, servletResponse);
                     } else {
 //El usuario no está logueado, entonces se redirecciona al
+                        response.sendRedirect(request.getContextPath() + PAGINA_INICIO);
+                    }
+                } else {
+//El usuario no está logueado, entonces se redirecciona al inicio
+                    response.sendRedirect(request.getContextPath() + PAGINA_INICIO);
+                }
+            }else if(requestURI.startsWith("/administrador/") ){
+//Obtenemos el objeto seguridadBean de la sesión actual
+                SeguridadBean userManager = (SeguridadBean)
+                        request.getSession().getAttribute("seguridadBean");
 
+                if (userManager != null) {
+                    if (userManager.isAutenticado()) {
+//El usuario está logueado entonces si puede ver la página
+                        filterChain.doFilter(servletRequest, servletResponse);
+                    } else {
+//El usuario no está logueado, entonces se redirecciona al
                         response.sendRedirect(request.getContextPath() + PAGINA_INICIO);
                     }
                 } else {
