@@ -87,4 +87,5 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     public List<Compra> listarUsuarios(String codigo) throws Exception {
         return usuarioRepo.findByCodigo(codigo).orElseThrow(()-> new Exception("")).getCompras();
     }
+
 }

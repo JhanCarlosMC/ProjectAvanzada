@@ -1,7 +1,9 @@
 package co.edu.uniquindio.proyecto.bean;
 
 import co.edu.uniquindio.proyecto.entidades.Producto;
+import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
+import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,21 +22,35 @@ public class InicioBean implements Serializable {
     @Autowired
     private ProductoServicio productoServicio;
 
-    @Getter @Setter
-    private List<Producto>productos;
+    @Autowired
+    private UsuarioServicio usuarioServicio;
+
+    @Getter
+    @Setter
+    private List<Producto> productos;
+
+    @Getter
+    @Setter
+    private List<Usuario> usuarios;
 
     @PostConstruct
     public void inicializar() throws Exception {
         this.productos = productoServicio.listarTodosProductos();
+        this.usuarios = usuarioServicio.listarUsuarios();
     }
 
-    public String irADetalle(String id)
-    {
-        return "/detalle_producto?faces-redirect=true&amp;producto="+id;
-    }
-    //34:40
-    public  String irAGestion(String id){
 
-        return "gestion_producto?faces-redirect=true&amp;producto="+id;
+    public String irADetalle(String id) {
+        return "/detalle_producto?faces-redirect=true&amp;producto=" + id;
+    }
+
+    public String irADetalleUsuario(String codigo) {
+        return "/administrador/detalle_usuario?faces-redirect=true&amp;usuario=" + codigo;
+    }
+
+    public String irAGestion(String id) {
+
+        return "gestion_producto?faces-redirect=true&amp;producto=" + id;
+
     }
 }

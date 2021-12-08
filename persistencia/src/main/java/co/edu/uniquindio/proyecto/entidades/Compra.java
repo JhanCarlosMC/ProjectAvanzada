@@ -1,6 +1,8 @@
 package co.edu.uniquindio.proyecto.entidades;
 
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -30,6 +32,7 @@ public class Compra implements Serializable {
 
     //Relaciones
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(nullable = false)
     private Usuario usuario;
 

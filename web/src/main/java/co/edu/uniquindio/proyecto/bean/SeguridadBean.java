@@ -25,13 +25,16 @@ import javax.faces.context.FacesContext;
 @Component
 public class SeguridadBean {
 
-    @Getter @Setter
+    @Getter
+    @Setter
     private boolean autenticado;
 
-    @Getter @Setter
+    @Getter
+    @Setter
     private String email, password;
 
-    @Getter @Setter
+    @Getter
+    @Setter
     private Usuario usuarioSesion;
 
     @Autowired
@@ -41,30 +44,43 @@ public class SeguridadBean {
     @Autowired
     private ProductoServicio productoServicio;
 
-    @Getter @Setter
-    private ArrayList<ProductoCarrito>productosCarrito;
+    @Getter
+    @Setter
+    private ArrayList<ProductoCarrito> productosCarrito;
 
-    @Getter @Setter
+    @Getter
+    @Setter
     private int subtotal;
 
     @PostConstruct
-    public void inicializar(){
+    public void inicializar() {
         this.subtotal = 0;
         this.productosCarrito = new ArrayList<>();
     }
 
-    public String iniciarSesion()
-    {
-        if (!email.isEmpty() && !password.isEmpty())
-    {
-            try
-            {
-                usuarioSesion = usuarioServicio.login(email,password);
+
+    public String iniciarSesion() {
+
+        if (!email.isEmpty() && !password.isEmpty()) {
+            if (email.equals("admin@mail.com")) {
+                try {
+                    usuarioSesion = usuarioServicio.login(email, password);
+                    autenticado = true;
+                    return "/administrador/gestionar_usuarios?faces-redirect=true";
+                } catch (Exception e) {
+                    FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
+                    FacesContext.getCurrentInstance().addMessage("login-bean", fm);
+                }
+
+            }
+        }
+
+        if (!email.isEmpty() && !password.isEmpty()) {
+            try {
+                usuarioSesion = usuarioServicio.login(email, password);
                 autenticado = true;
                 return "/index?faces-redirect=true";
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
                 FacesContext.getCurrentInstance().addMessage("login-bean", fm);
             }
@@ -72,14 +88,14 @@ public class SeguridadBean {
         return null;
     }
 
-    public String cerrarSesion()
-    {
+
+    public String cerrarSesion() {
         //autenticado = false;
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "/index?faces-redirect=true";
     }
 
-    public void agregarAlCarrito(Integer id, int precio, String nombre, String imagen){
+    public void agregarAlCarrito(Integer id, int precio, String nombre, String imagen) {
         ProductoCarrito pc = new ProductoCarrito(id, nombre, imagen, precio, 1);
         if (!productosCarrito.contains(pc)) {
             productosCarrito.add(pc);
@@ -89,32 +105,35 @@ public class SeguridadBean {
         }
     }
 
-    public void eliminarDelCarrito(int indice){
+    public void eliminarDelCarrito(int indice) {
         subtotal -= productosCarrito.get(indice).getPrecio();
         productosCarrito.remove(indice);
     }
 
-    public void actualizarSubtotal(){
+    public void actualizarSubtotal() {
         subtotal = 0;
-        for (ProductoCarrito p: productosCarrito){
-            subtotal += p.getPrecio()*p.getUnidades();
+        for (ProductoCarrito p : productosCarrito) {
+            subtotal += p.getPrecio() * p.getUnidades();
         }
     }
 
-    public void comprar()
-    {
-        if(usuarioSesion != null && !productosCarrito.isEmpty()){
+    public void comprar() {
+        if (usuarioSesion != null && !productosCarrito.isEmpty()) {
             try {
-                productoServicio.comprarProductos(usuarioSesion,productosCarrito, MedioPago.TARJETA);
+                productoServicio.comprarProductos(usuarioSesion, productosCarrito, MedioPago.TARJETA);
                 productosCarrito.clear();
                 subtotal = 0;
                 //comprobar que las unidades sean correctas
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Compra realizada con exito");
                 FacesContext.getCurrentInstance().addMessage("compra-msj", fm);
-            }catch (Exception e){
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta",e.getMessage());
+            } catch (Exception e) {
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
                 FacesContext.getCurrentInstance().addMessage("compra-msj", fm);
             }
         }
+    }
+
+    public void usuarioAdministrador() {
+
     }
 }

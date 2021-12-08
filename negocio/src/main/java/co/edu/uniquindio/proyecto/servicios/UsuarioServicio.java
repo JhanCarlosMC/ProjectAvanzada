@@ -29,5 +29,7 @@ public interface UsuarioServicio {
     void eliminarProductoFavorito(Producto producto, Usuario usuario) throws Exception;
 
     List<Compra> listarUsuarios(String codigo) throws Exception;
+
+
 }
 

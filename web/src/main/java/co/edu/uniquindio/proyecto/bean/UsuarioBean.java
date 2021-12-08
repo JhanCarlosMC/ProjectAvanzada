@@ -81,4 +81,5 @@ public class UsuarioBean implements Serializable {
         }
         return "index.xhtml?faces-redirect=true";
     }
+
 }
