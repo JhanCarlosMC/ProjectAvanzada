@@ -47,14 +47,18 @@ public class ProductoServicioImpl implements ProductoServicio{
     }
 
     @Override
-    public void eliminarProducto(Integer codigo) throws Exception {
+    public void eliminarProducto(Integer codigo) throws Exception
+    {
         Optional<Producto> producto = productoRepo.findById(codigo);
 
-        if(producto.isEmpty()){
+        if(producto.isEmpty())
+        {
             throw new Exception("El código no existe");
         }
-        productoRepo.deleteById(codigo);//tener en cuenta que cuando se elimine revisar que registros dependen de otros
-        //cascade delete hibernate
+        else
+        {
+            productoRepo.deleteById(codigo);//tener en cuenta que cuando se elimine revisar que registros dependen de otros
+        }
     }
 
     @Override
