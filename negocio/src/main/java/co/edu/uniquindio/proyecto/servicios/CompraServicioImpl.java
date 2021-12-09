@@ -5,8 +5,7 @@ import co.edu.uniquindio.proyecto.entidades.DetalleCompra;
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.repositorios.CompraRepo;
-import co.edu.uniquindio.proyecto.servicios.email.EmailBody;
-import co.edu.uniquindio.proyecto.servicios.email.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,13 +15,12 @@ import java.util.Optional;
 public class CompraServicioImpl implements CompraServicio{
 
     private final CompraRepo compraRepo;
-    private EmailBody miEB;
-    private EmailService miES;
+
+    @Autowired
+    private EmailSenderService miEmail;
 
     public CompraServicioImpl(CompraRepo compraRepo) {
         this.compraRepo = compraRepo;
-        this.miEB = new EmailBody();
-        this.miES = new EmailService();
     }
 
     @Override
@@ -44,8 +42,7 @@ public class CompraServicioImpl implements CompraServicio{
                 + "<h3>Unishop</h3>"
                 + "</p>";
 
-        miEB = new EmailBody(miU.getEmail(), mensaje,"[Compra Realizada]");
-        miES.sendEmail(miEB);
+        miEmail.sendSimpleEmail( miU.getEmail(), mensaje, "[Compra Realizada]");
         return compraRepo.save(compra);
     }
 

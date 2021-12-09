@@ -5,6 +5,7 @@ import co.edu.uniquindio.proyecto.dto.ProductoCarrito;
 import co.edu.uniquindio.proyecto.entidades.MedioPago;
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
+import co.edu.uniquindio.proyecto.servicios.EmailSenderService;
 import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 import lombok.Getter;
@@ -51,6 +52,9 @@ public class SeguridadBean {
     @Getter
     @Setter
     private int subtotal;
+
+    @Autowired
+    private EmailSenderService emailSenderService;
 
     @PostConstruct
     public void inicializar() {
@@ -118,7 +122,8 @@ public class SeguridadBean {
     }
 
     public void comprar() {
-        if (usuarioSesion != null && !productosCarrito.isEmpty()) {
+        if (usuarioSesion != null && !productosCarrito.isEmpty())
+        {
             try {
                 productoServicio.comprarProductos(usuarioSesion, productosCarrito, MedioPago.TARJETA);
                 productosCarrito.clear();
@@ -133,7 +138,8 @@ public class SeguridadBean {
         }
     }
 
-    public void usuarioAdministrador() {
+    public void usuarioAdministrador()
+    {
 
     }
 }

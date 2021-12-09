@@ -4,8 +4,6 @@ import co.edu.uniquindio.proyecto.entidades.Compra;
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
-import co.edu.uniquindio.proyecto.servicios.email.EmailBody;
-import co.edu.uniquindio.proyecto.servicios.email.EmailService;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,23 +16,20 @@ import java.util.Optional;
 public class UsuarioServicioImpl implements UsuarioServicio {
 
     private final UsuarioRepo usuarioRepo;
-    private EmailBody miEB;
     @Autowired
-    private EmailService miES;
+    private EmailSenderService miEmail;
 
     public UsuarioServicioImpl(UsuarioRepo usuarioRepo) {
         this.usuarioRepo = usuarioRepo;
-        this.miEB = new EmailBody();
+        //this.miEB = new EmailBody();
     }
 
     @Override
     public Usuario registrarUsuario(Usuario u) throws Exception
     {
-        System.out.println(1);
         Optional<Usuario>buscado = usuarioRepo.findById(u.getCodigo());
         if(buscado.isPresent())
         {
-            System.out.println(-1);
             throw new Exception("El código ya existe");
         }
         StrongPasswordEncryptor spe = new StrongPasswordEncryptor();
@@ -52,11 +47,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
                 + "Atentamente, "
                 + "<h3>Unishop</h3>"
                 + "</p>";
-
-        miEB = new EmailBody(u.getEmail(),mensaje,"[Registro de usuario]");
-        System.out.println("Enviando correo.");
-        miES.sendEmail(miEB);
-        System.out.println("\n\n AGREGADO. \n\n");
+        miEmail.sendSimpleEmail(u.getEmail(), mensaje, "[Usuario Creado]");
         return usuarioRepo.save(u);
     }
 
@@ -120,8 +111,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
                 + "<h3>Unishop</h3>"
                 + "</p>";
 
-        miEB = new EmailBody(email, mensaje,"[Recuperar Contraseña]");
-        miES.sendEmail(miEB);
+        miEmail.sendSimpleEmail(miU.getEmail(), mensaje, "[Recuperar Constraseña]");
 
         miU.setPassword(nuevaContraseña);
         StrongPasswordEncryptor spe = new StrongPasswordEncryptor();

@@ -7,8 +7,7 @@ import co.edu.uniquindio.proyecto.repositorios.ComentarioRepo;
 import co.edu.uniquindio.proyecto.repositorios.CompraRepo;
 import co.edu.uniquindio.proyecto.repositorios.DetalleCompraRepo;
 import co.edu.uniquindio.proyecto.repositorios.ProductoRepo;
-import co.edu.uniquindio.proyecto.servicios.email.EmailBody;
-import co.edu.uniquindio.proyecto.servicios.email.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -26,16 +25,14 @@ public class ProductoServicioImpl implements ProductoServicio{
     private final ComentarioRepo comentarioRepo;
     private final CompraRepo compraRepo;
     private final DetalleCompraRepo detalleCompraRepo;
-    private EmailBody miEB;
-    private EmailService miES;
+    @Autowired
+    private EmailSenderService miEmail;
 
     public ProductoServicioImpl(ProductoRepo productoRepo, ComentarioRepo comentarioRepo, CompraRepo compraRepo, DetalleCompraRepo detalleCompraRepo){
         this.productoRepo = productoRepo;
         this.comentarioRepo = comentarioRepo;
         this.compraRepo = compraRepo;
         this.detalleCompraRepo = detalleCompraRepo;
-        this.miEB = new EmailBody();
-        this.miES = new EmailService();
     }
 
     @Override
@@ -48,7 +45,6 @@ public class ProductoServicioImpl implements ProductoServicio{
                 + "<p>Tu producto ha sido agregado correctamente."
                 + "<br/>"
                 + "<h4>DETALLES DEL PRODUCTO</h4>"
-                + "<br/>"
                 + "Nombre del producto:" + p.getNombre()
                 + "<br/>"
                 + "Descripción del producto:"+p.getDescripcion()
@@ -59,11 +55,10 @@ public class ProductoServicioImpl implements ProductoServicio{
                 + "Atentamente, "
                 + "<h3>Unishop</h3>"
                 + "</p>";
+        miEmail.sendSimpleEmail(usuarioSesion.getEmail(), mensaje, "[Producto Agregado]");
 
-        miEB = new EmailBody(usuarioSesion.getEmail(),mensaje,"[Registro de producto]");
         try
         {
-            miES.sendEmail(miEB);
             return productoRepo.save(p);
         }catch (Exception e){
             throw new Exception(e.getMessage());
@@ -156,7 +151,6 @@ public class ProductoServicioImpl implements ProductoServicio{
             c.setFechaCompra(LocalDate.now(ZoneId.of("America/Bogota")));
             c.setUsuario(usuario);
             c.setMedioPago(medioPago);
-
             Compra compraGuardada = compraRepo.save(c);
 
             DetalleCompra dc;
