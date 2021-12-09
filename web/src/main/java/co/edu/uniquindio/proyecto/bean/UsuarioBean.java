@@ -46,6 +46,7 @@ public class UsuarioBean implements Serializable {
 
     private final ProductoServicio productoServicio;
 
+
     public UsuarioBean(UsuarioServicio usuarioServicio, ProductoServicio productoServicio, CiudadServicio ciudadServicio) {
         this.usuarioServicio = usuarioServicio;
         this.productoServicio = productoServicio;

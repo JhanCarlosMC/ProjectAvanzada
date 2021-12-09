@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="WEB-INF/template.xhtml">
+
+    <ui:define name="title">Modificar Contraseña</ui:define>
+
+    <ui:define name="content">
+
+        <p:panel header="Recuperar Contraseña">
+
+            <h:form>
+
+                <h:panelGrid columns="3" cellpadding="5">
+
+                    <p:outputLabel value="Contraseña: " for="contraseña_usuario"/>
+
+                    <p:inputText id="contraseña_usuario" value="#{seguridadBean.nuevaContraseña}" required="true" type="password"/>
+
+                    <p:message for="contraseña_usuario"/>
+
+                </h:panelGrid>
+
+                <p:commandButton value="Cambiar Contraseña" action="#{seguridadBean.modificarConstraseña()}" update="@form" icon="pi pi-user-plus"/>
+
+            </h:form>
+
+        </p:panel>
+
+    </ui:define>
+
+</ui:composition>
+</html>

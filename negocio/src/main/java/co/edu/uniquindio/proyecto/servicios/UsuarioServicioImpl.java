@@ -21,7 +21,6 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
     public UsuarioServicioImpl(UsuarioRepo usuarioRepo) {
         this.usuarioRepo = usuarioRepo;
-        //this.miEB = new EmailBody();
     }
 
     @Override
@@ -97,27 +96,13 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     public void recuperarPassword(String email, String nuevaContraseña) throws Exception
     {
         Usuario miU = usuarioRepo.findByEmail(email).orElseThrow(()-> new Exception("El email del usuario no existe."));
-
-        String mensaje = "<h2>Hola, " + miU.getNombre() + "</h2>"
-                + "<br>"
-                + "<p>Recuperar tu contraseña:"
-                + "<br>"
-                + "Nickname:" + miU.getUsername()
-                + "<br>"
-                + "Para modificar la constraseña, click en el siguente enlace: [Link]"
-                + "<br>"
-                + "<br>"
-                + "Atentamente, "
-                + "<h3>Unishop</h3>"
-                + "</p>";
-
-        miEmail.sendSimpleEmail(miU.getEmail(), mensaje, "[Recuperar Constraseña]");
-
-        miU.setPassword(nuevaContraseña);
-        StrongPasswordEncryptor spe = new StrongPasswordEncryptor();
-        miU.setPassword(spe.encryptPassword(miU.getPassword()));
-
-        usuarioRepo.save(miU);
+        if(miU != null)
+        {
+            miU.setPassword(nuevaContraseña);
+            StrongPasswordEncryptor spe = new StrongPasswordEncryptor();
+            miU.setPassword(spe.encryptPassword(miU.getPassword()));
+            usuarioRepo.save(miU);
+        }
 
     }
 

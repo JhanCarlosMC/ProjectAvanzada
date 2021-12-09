@@ -12,7 +12,9 @@
 <ui:composition template="WEB-INF/template.xhtml">
     <ui:define name="title">Inicio</ui:define>
     <ui:define name="content">
+
         <h1>Lista productos</h1>
+
         <h:form>
             <p:dataView value="#{inicioBean.productos}" paginator="true" rows="3" var="producto" gridIcon="pi pi-th-large" listIcon="pi pi-bars">
                 <p:dataViewGridItem>

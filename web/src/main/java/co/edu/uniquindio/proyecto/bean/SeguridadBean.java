@@ -5,6 +5,7 @@ import co.edu.uniquindio.proyecto.dto.ProductoCarrito;
 import co.edu.uniquindio.proyecto.entidades.MedioPago;
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
+import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
 import co.edu.uniquindio.proyecto.servicios.EmailSenderService;
 import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
@@ -41,6 +42,8 @@ public class SeguridadBean {
     @Autowired
     private UsuarioServicio usuarioServicio;
 
+    private final UsuarioRepo usuarioRepo;
+
 
     @Autowired
     private ProductoServicio productoServicio;
@@ -56,10 +59,22 @@ public class SeguridadBean {
     @Autowired
     private EmailSenderService emailSenderService;
 
+    @Getter @Setter
+    private String emailRecuperarContraseña;
+
+    @Getter @Setter
+    private String nuevaContraseña;
+
+    public SeguridadBean (UsuarioRepo miURepo)
+    {
+        this.usuarioRepo = miURepo;
+    }
+
     @PostConstruct
     public void inicializar() {
         this.subtotal = 0;
         this.productosCarrito = new ArrayList<>();
+
     }
 
 
@@ -141,5 +156,28 @@ public class SeguridadBean {
     public void usuarioAdministrador()
     {
 
+    }
+    public void enviarCorreoContraseña(String email) throws Exception
+    {
+        Usuario miU = usuarioRepo.findByEmail(email).orElseThrow(() -> new Exception("El email ingresado, no existe"));
+
+        String mensaje = "<h1>Hola, " + miU.getNombre() + "</h1>"
+                + "<br/>"
+                + "<h2>Recuperar tu contraseña</h2>"
+                + "<br/>"
+                + "<p>Nickname:" + miU.getUsername()
+                + "<br/>"
+                + "Para modificar la constraseña, click en el siguente enlace: http://localhost:8080/cambio_contraseña.xhtml"
+                + "<br/>"
+                + "<br/>"
+                + "Atentamente, "
+                + "<h3>Unishop</h3>"
+                + "</p>";
+
+        emailSenderService.sendSimpleEmail(/*miU.getEmail()*/"juansebastianmedinasanabria@gmail.com", mensaje, "[Recuperar Constraseña]");
+    }
+    public void modificarConstraseña() throws Exception
+    {
+        usuarioServicio.recuperarPassword(emailRecuperarContraseña, nuevaContraseña);
     }
 }
