@@ -54,7 +54,8 @@ public class ProductoBean implements Serializable {
     }
 
     @PostConstruct
-    public void inicializar(){
+    public void inicializar()
+    {
         this.producto = new Producto();
         this.imagenes = new ArrayList<>();
         categorias = categoriaServicio.listaCategorias();
@@ -68,7 +69,7 @@ public class ProductoBean implements Serializable {
                     producto.setUsuario(usuarioSesion);
                     producto.setImagenes(imagenes);
                     producto.setFechaLimite(LocalDate.now().plusMonths(2));
-                    productoServicio.publicarProducto(producto);
+                    productoServicio.publicarProducto(producto, usuarioSesion);
 
                     FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,"Alerta","Producto creado");
                     FacesContext.getCurrentInstance().addMessage(null,facesMessage);

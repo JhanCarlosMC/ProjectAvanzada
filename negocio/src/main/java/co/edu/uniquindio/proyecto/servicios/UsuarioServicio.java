@@ -22,7 +22,7 @@ public interface UsuarioServicio {
 
     Usuario iniciarSesion(String email, String password) throws Exception;
 
-    String recuperarPassword(String email) throws Exception;
+    void recuperarPassword(String email, String nuevaContraseña) throws Exception;
 
     void guardarProductoFavoritos(Usuario usuario) throws Exception;
 

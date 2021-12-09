@@ -9,6 +9,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="WEB-INF/template.xhtml">
 
+    <ui:define name="title">Registro Usuario</ui:define>
     <ui:define name="content">
         <p:panel header="Registrar Usuario">
             <h:form>
@@ -41,6 +42,7 @@
 
                 </h:panelGrid>
                 <p:growl showDetail="true" for="msj-bean"/>
+                <br/>
                 <p:commandButton value="Registrar usuario" action="#{usuarioBean.registrarUsuario}" update="@form" icon="pi pi-user-plus"/>
             </h:form>
         </p:panel>

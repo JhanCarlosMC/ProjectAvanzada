@@ -84,6 +84,9 @@
                 <div class="text-end">
                     <h:form rendered="#{!seguridadBean.autenticado}">
                         <p:commandButton value="Login" styleClass="btn btn-light me-2" onclick="PF('login').show()" icon="pi pi-sign-in" />
+                    </h:form>
+                    <br/>
+                    <h:form>
                         <p:commandButton value="Registro" styleClass="btn btn-primary" action="registrar_usuario?faces-redirect=true" icon="pi pi-user-plus"/>
                     </h:form>
                     <div id="info-sesion" jsf:rendered ="#{seguridadBean.autenticado}">

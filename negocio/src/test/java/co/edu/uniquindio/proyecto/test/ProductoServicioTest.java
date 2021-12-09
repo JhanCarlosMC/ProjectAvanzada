@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyecto.test;
 
 import co.edu.uniquindio.proyecto.NegocioApplication;
 import co.edu.uniquindio.proyecto.entidades.Producto;
+import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -19,12 +20,13 @@ public class ProductoServicioTest {
     @Autowired
     private ProductoServicio productoServicio;
 
+    Usuario miU = null;
+
     @Test
     public void ingresarProductoTest(){
         Producto newProducto = new Producto("Play Station 6", 5, "Es la mas nueva", 10000, 0, LocalDate.of(2021, 10, 20));
-
         try {
-            Producto respuesta = productoServicio.publicarProducto(newProducto);
+            Producto respuesta = productoServicio.publicarProducto(newProducto, miU);
             Assertions.assertNotNull(respuesta);
         } catch (Exception e) {
             e.printStackTrace();
@@ -34,7 +36,7 @@ public class ProductoServicioTest {
     @Test
     public void actualizarProductoTest() throws Exception {
         Producto newProducto = new Producto("Play Station 6", 5, "Es la mas nueva", 10000, 0, LocalDate.of(2021, 10, 20));
-        productoServicio.publicarProducto(newProducto);
+        productoServicio.publicarProducto(newProducto, miU);
 
         Producto updateProducto = productoServicio.obtenerProducto(1);
         updateProducto.setDescuento(13);
@@ -46,7 +48,7 @@ public class ProductoServicioTest {
     @Test
     public void eliminarProductoTest() throws Exception {
         Producto newProducto = new Producto("Play Station 6", 5, "Es la mas nueva", 10000, 0, LocalDate.of(2021, 10, 20));
-        productoServicio.publicarProducto(newProducto);
+        productoServicio.publicarProducto(newProducto, miU);
 
         productoServicio.eliminarProducto(1);
         Assertions.assertTrue(true);

@@ -58,25 +58,32 @@ public class UsuarioBean implements Serializable {
         usuario = new Usuario();
         ciudades = ciudadServicio.listarCiudades();
 
-        try
+        if(usuarioSesion != null)
         {
-            this.productos=productoServicio.listarProductos(usuarioSesion.getCodigo());
-            this.productosComprados=productoServicio.listarProductos(usuarioSesion.getCodigo());
-            productoServicio.listarProductos(usuarioSesion.getCodigo()).size();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
+            try {
+                this.productos = productoServicio.listarProductos(usuarioSesion.getCodigo());
+                this.productosComprados = productoServicio.listarProductos(usuarioSesion.getCodigo());
+                productoServicio.listarProductos(usuarioSesion.getCodigo()).size();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public String registrarUsuario(){
+    public String registrarUsuario()
+    {
         try {
+            System.out.println(0);
             usuarioServicio.registrarUsuario(usuario);
             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,"Alerta","Registro exitoso");
             FacesContext.getCurrentInstance().addMessage("msj-bean",facesMessage);
-        } catch (Exception e) {
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Alerta",e.getMessage());
+        }
+        catch (Exception e)
+        {
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Alerta", "Registro fallido.");
+            FacesContext.getCurrentInstance().addMessage("msj-bean",facesMessage);
+
+            facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Alerta",e.getMessage());
             FacesContext.getCurrentInstance().addMessage("msj-bean",facesMessage);
         }
         return "index.xhtml?faces-redirect=true";

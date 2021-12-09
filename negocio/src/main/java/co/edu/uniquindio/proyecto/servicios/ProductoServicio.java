@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface ProductoServicio {
 
-    Producto publicarProducto(Producto p) throws Exception;
+    Producto publicarProducto(Producto p, Usuario u) throws Exception;
 
     Producto actualizarProducto(Producto p) throws Exception;
 
@@ -29,8 +29,6 @@ public interface ProductoServicio {
     void guardarProductoFavoritos(Producto producto, Usuario usuario) throws Exception;
 
     void eliminarProductoFavorito(Producto producto, Usuario usuario) throws Exception;
-
-    void comprarProductos(Compra compra) throws Exception;
 
     List<Producto>buscarProductos(String nombreProducto, String[] filtros);
 

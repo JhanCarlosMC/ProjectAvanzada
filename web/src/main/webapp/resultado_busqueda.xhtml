@@ -8,7 +8,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="WEB-INF/template.xhtml">
-    <ui:define name="title">Resultado de busqueda</ui:define>
+    <ui:define name="title">Resultado de busqueda: ${busquedaBean.busquedaParam}</ui:define>
 
     <ui:define name="content">
         <h2>Resultados de busqueda para ' ${busquedaBean.busquedaParam} '</h2>
