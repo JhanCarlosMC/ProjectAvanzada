@@ -175,9 +175,22 @@ public class SeguridadBean {
                 + "</p>";
 
         emailSenderService.sendSimpleEmail(/*miU.getEmail()*/"juansebastianmedinasanabria@gmail.com", mensaje, "[Recuperar Constraseña]");
+
+        FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Email enviado con exito.");
+        FacesContext.getCurrentInstance().addMessage("compra-msj", fm);
     }
     public void modificarConstraseña() throws Exception
     {
-        usuarioServicio.recuperarPassword(emailRecuperarContraseña, nuevaContraseña);
+        if(!emailRecuperarContraseña.equals(null) && !nuevaContraseña.equals(null))
+        {
+            usuarioServicio.recuperarPassword(emailRecuperarContraseña, nuevaContraseña);
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Contraseña cambiada con Exito.");
+            FacesContext.getCurrentInstance().addMessage("compra-msj", fm);
+        }
+        else
+        {
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", "Error datos faltantes.");
+            FacesContext.getCurrentInstance().addMessage("compra-msj", fm);
+        }
     }
 }

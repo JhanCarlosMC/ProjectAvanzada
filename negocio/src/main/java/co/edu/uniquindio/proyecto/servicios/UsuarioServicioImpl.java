@@ -4,7 +4,6 @@ import co.edu.uniquindio.proyecto.entidades.Compra;
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
-import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,9 +30,6 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         {
             throw new Exception("El código ya existe");
         }
-        StrongPasswordEncryptor spe = new StrongPasswordEncryptor();
-        u.setPassword(spe.encryptPassword(u.getPassword()));
-
         String mensaje = "<h2>Hola, " + u.getNombre() + "</h2>"
                 + "<br/>"
                 + "<p>Usuario agregado correctamente."
@@ -47,6 +43,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
                 + "<h3>Unishop</h3>"
                 + "</p>";
         miEmail.sendSimpleEmail(u.getEmail(), mensaje, "[Usuario Creado]");
+        System.out.println("Creado.");
         return usuarioRepo.save(u);
     }
 
@@ -79,28 +76,29 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     @Override
     public Usuario iniciarSesion(String email, String password) throws Exception
     {
-        Usuario miU =  usuarioRepo.findByEmail(email).orElseThrow(() -> new Exception("El correo es incorrecto."));
+        Usuario miU =  usuarioRepo.findByEmailAndPassword(email, password).orElseThrow(() -> new Exception("Los datos son incorrectos, intentelo nuevamente."));
 
-        StrongPasswordEncryptor spe = new StrongPasswordEncryptor();
-        if(spe.checkPassword(password, miU.getPassword()))
+        if(miU != null)
         {
             return miU;
         }
         else
         {
-            throw new Exception("La contraseña es incorrecta.");
+            throw new Exception("El usuario no existe.");
         }
     }
 
     @Override
     public void recuperarPassword(String email, String nuevaContraseña) throws Exception
     {
+
         Usuario miU = usuarioRepo.findByEmail(email).orElseThrow(()-> new Exception("El email del usuario no existe."));
         if(miU != null)
         {
+
             miU.setPassword(nuevaContraseña);
-            StrongPasswordEncryptor spe = new StrongPasswordEncryptor();
-            miU.setPassword(spe.encryptPassword(miU.getPassword()));
+
+
             usuarioRepo.save(miU);
         }
 
