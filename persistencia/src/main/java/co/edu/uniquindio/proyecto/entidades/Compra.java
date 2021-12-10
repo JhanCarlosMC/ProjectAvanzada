@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -38,6 +39,7 @@ public class Compra implements Serializable {
 
     @OneToMany(mappedBy = "compra")
     @ToString.Exclude
+    @JsonIgnore
     private List<DetalleCompra> detalleCompras;
 
     @ElementCollection

@@ -127,4 +127,9 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         return usuarioRepo.findByCodigo(codigo).orElseThrow(()-> new Exception("")).getCompras();
     }
 
+    @Override
+    public List<Producto> listarProductosFavoritos(String codigo) throws Exception {
+        return usuarioRepo.findAllByProductosFavoritos(codigo);
+    }
+
 }

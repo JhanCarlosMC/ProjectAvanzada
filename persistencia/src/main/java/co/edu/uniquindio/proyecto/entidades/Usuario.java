@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -31,27 +32,33 @@ public class Usuario extends Persona implements Serializable {
 
     @OneToMany(mappedBy = "usuario")
     @ToString.Exclude
+    @JsonIgnore
     private List<Chat> chats;
 
     @OneToMany(mappedBy = "usuario")
     @ToString.Exclude
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private List<Compra> compras;
 
     @OneToMany(mappedBy = "usuario")
     @ToString.Exclude
+    @JsonIgnore
     private List<Producto> productos;
 
     @OneToMany(mappedBy = "usuario")
     @ToString.Exclude
+    @JsonIgnore
     private List<Comentario> comentarios;
 
     @ManyToMany
     @ToString.Exclude
+    @JsonIgnore
     private List<Producto> productosFavoritos;
 
     @OneToMany(mappedBy = "usuario")
     @ToString.Exclude
+    @JsonIgnore
     private List<DetalleSubasta> detalleSubastas;
 
     //Constructor SuperClase

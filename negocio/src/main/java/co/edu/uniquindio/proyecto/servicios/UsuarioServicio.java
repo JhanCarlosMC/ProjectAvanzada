@@ -30,6 +30,6 @@ public interface UsuarioServicio {
 
     List<Compra> listarUsuarios(String codigo) throws Exception;
 
-
+    List<Producto> listarProductosFavoritos(String id) throws Exception;
 }
 

@@ -169,4 +169,24 @@ public class ProductoServicioImpl implements ProductoServicio{
         }
 
     }
+    @Override
+    public Producto publicarProducto(Producto p) throws Exception {
+
+        try {
+            return productoRepo.save(p);
+
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Override
+    public Integer obtenerUnidadesProducto(Integer codigo) throws Exception {
+        return productoRepo.obtenerUnidadesProducto(codigo);
+    }
+
+    @Override
+    public Integer obtenerPromedioComentario(Integer codigo) throws Exception {
+        return productoRepo.obtenerPromedioComentario(codigo);
+    }
 }

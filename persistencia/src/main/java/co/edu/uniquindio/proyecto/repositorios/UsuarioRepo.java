@@ -48,4 +48,5 @@ public interface UsuarioRepo extends JpaRepository<Usuario, String>
     Optional<Usuario>findByCodigo(String codigo);
 
 
+    List<Producto> findAllByProductosFavoritos(String codigo);
 }

@@ -48,4 +48,10 @@ public interface ProductoRepo extends JpaRepository<Producto, Integer>{
 
     @Query("select p from Producto p join p.usuario u where u.codigo= :codigo")
     List<Producto> listarCodUsuario(String codigo);
+
+    @Query("select p.unidades from Producto p where p.codigo = :codigo")
+    Integer obtenerUnidadesProducto(Integer codigo);
+
+    @Query("select avg(c.calificacion)from Comentario c where c.producto.codigo = :codigo")
+    Integer obtenerPromedioComentario(Integer codigo);
 }

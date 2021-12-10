@@ -12,6 +12,8 @@ public interface ProductoServicio {
 
     Producto publicarProducto(Producto p, Usuario u) throws Exception;
 
+    Producto publicarProducto(Producto p) throws  Exception;
+
     Producto actualizarProducto(Producto p) throws Exception;
 
     void eliminarProducto(Integer codigo) throws Exception;
@@ -39,4 +41,8 @@ public interface ProductoServicio {
     CategoriaEnum obtenerCategoria(String categoria) throws Exception;
 
     Compra comprarProductos(Usuario usuario, ArrayList<ProductoCarrito>producto, MedioPago medioPago) throws Exception;
+
+    Integer obtenerUnidadesProducto(Integer codigo) throws Exception;
+
+    Integer obtenerPromedioComentario(Integer codigo) throws Exception;
 }

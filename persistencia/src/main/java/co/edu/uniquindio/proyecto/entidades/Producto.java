@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -70,26 +71,32 @@ public class Producto implements Serializable
 
     @OneToMany(mappedBy = "producto")
     @ToString.Exclude
+    @JsonIgnore
     private List<DetalleCompra> detalleCompras;
 
     @OneToMany(mappedBy = "producto")
     @ToString.Exclude
+    @JsonIgnore
     private List<Comentario> comentarios;
 
     @OneToMany(mappedBy = "producto")
     @ToString.Exclude
+    @JsonIgnore
     private List<Subasta> subastas;
 
     @ManyToMany
     @ToString.Exclude
+    @JsonIgnore
     private List<Categoria> categorias;
 
     @OneToMany(mappedBy = "producto")
     @ToString.Exclude
+    @JsonIgnore
     private List<Chat> chat;
 
     @ManyToMany(mappedBy = "productosFavoritos")
     @ToString.Exclude
+    @JsonIgnore
     private List<Usuario> usuarios;
 
     //Constructor

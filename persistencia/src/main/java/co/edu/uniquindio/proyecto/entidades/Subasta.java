@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -30,6 +31,7 @@ public class Subasta implements Serializable {
 
     @OneToMany(mappedBy = "subasta")
     @ToString.Exclude
+    @JsonIgnore
     private List<DetalleSubasta> detalleSubastas;
 
     //Constructor
